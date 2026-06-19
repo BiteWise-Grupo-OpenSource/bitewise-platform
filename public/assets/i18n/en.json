@@ -82,5 +82,133 @@
       "onboardingPending": "Pending",
       "tokenLabel": "Mock JWT"
     }
+  },
+  "patient": {
+    "shell": {
+      "navigationLabel": "Patient navigation",
+      "roleLabel": "Active role",
+      "signedInAs": "Patient session"
+    },
+    "nav": {
+      "dashboard": "Home",
+      "plan": "My weekly plan",
+      "log": "Log meal",
+      "recipes": "Recipes",
+      "progress": "My progress",
+      "messages": "Messages",
+      "settings": "Settings"
+    },
+    "dashboard": {
+      "eyebrow": "Today in BiteWise",
+      "title": "Hi, {{name}}",
+      "subtitle": "Week 3 is active with a muscle gain goal. Review your progress and jump into key tasks.",
+      "primaryAction": "Log meal",
+      "metricsLabel": "Patient progress summary",
+      "actionsLabel": "Patient quick actions",
+      "metrics": {
+        "calories": "Kcal today",
+        "caloriesHelper": "of 2,000 goal",
+        "protein": "Protein",
+        "proteinHelper": "of 150 g goal",
+        "streak": "Streak",
+        "streakHelper": "days without interruption",
+        "goal": "Goal",
+        "goalHelper": "completed this week"
+      },
+      "macros": {
+        "eyebrow": "Daily macros",
+        "title": "Current distribution",
+        "protein": "Protein",
+        "carbs": "Carbs",
+        "fat": "Fat",
+        "fiber": "Fiber"
+      },
+      "meals": {
+        "eyebrow": "Log",
+        "title": "Today's meals",
+        "add": "Add",
+        "breakfast": "Avocado toast",
+        "breakfastDetail": "320 kcal - Breakfast - 7:30",
+        "lunch": "Grilled chicken",
+        "lunchDetail": "540 kcal - Lunch - 13:00",
+        "dinner": "Pizza outside the plan",
+        "dinnerDetail": "560 kcal - Dinner",
+        "snack": "Afternoon snack pending",
+        "snackDetail": "Recommended: apple"
+      },
+      "status": {
+        "done": "Done",
+        "review": "Review",
+        "pending": "Pending"
+      },
+      "actions": {
+        "plan": "View daily targets and suggested meals.",
+        "log": "Add foods to today's log.",
+        "recipes": "Explore recipes matched to your profile.",
+        "messages": "Check in with your nutritionist.",
+        "settings": "Adjust preferences and personal data."
+      },
+      "water": {
+        "eyebrow": "Hydration",
+        "title": "Daily water",
+        "label": "Logged water cups",
+        "action": "Update log"
+      },
+      "week": {
+        "eyebrow": "This week",
+        "title": "Calories per day",
+        "label": "Weekly calories chart",
+        "mon": "M",
+        "tue": "T",
+        "wed": "W",
+        "thu": "T",
+        "fri": "F",
+        "sat": "S",
+        "sun": "S"
+      }
+    },
+    "placeholder": {
+      "eyebrow": "Patient",
+      "title": "Module in progress",
+      "subtitle": "This entry point is already protected and ready for the detailed context functionality.",
+      "primary": "Coming soon",
+      "back": "Back home"
+    },
+    "plan": {
+      "eyebrow": "Personalized plan",
+      "title": "My weekly plan",
+      "subtitle": "The active nutrition plan, daily targets, and professional consultation will connect here.",
+      "primary": "Export PDF"
+    },
+    "log": {
+      "eyebrow": "Food log",
+      "title": "Log meal",
+      "subtitle": "This placeholder reserves food search, portion selection, and daily logging.",
+      "primary": "Add food"
+    },
+    "recipes": {
+      "eyebrow": "Library",
+      "title": "Recipes for you",
+      "subtitle": "Recommended recipes will filter by goal, macros, and patient preferences.",
+      "primary": "Search recipe"
+    },
+    "progress": {
+      "eyebrow": "Tracking",
+      "title": "My progress",
+      "subtitle": "Weight, adherence, calorie trends, and macro evolution will live here.",
+      "primary": "Log measure"
+    },
+    "messages": {
+      "eyebrow": "Communication",
+      "title": "Messages",
+      "subtitle": "Protected channel for conversations with the assigned nutritionist.",
+      "primary": "Write message"
+    },
+    "settings": {
+      "eyebrow": "Preferences",
+      "title": "Settings",
+      "subtitle": "Reserved space for profile, dietary restrictions, language, and account settings.",
+      "primary": "Edit profile"
+    }
   }
 }

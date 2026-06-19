@@ -82,5 +82,133 @@
       "onboardingPending": "Pendiente",
       "tokenLabel": "JWT mock"
     }
+  },
+  "patient": {
+    "shell": {
+      "navigationLabel": "Navegacion de paciente",
+      "roleLabel": "Rol activo",
+      "signedInAs": "Sesion de paciente"
+    },
+    "nav": {
+      "dashboard": "Inicio",
+      "plan": "Mi plan semanal",
+      "log": "Registrar comida",
+      "recipes": "Recetas",
+      "progress": "Mi progreso",
+      "messages": "Mensajes",
+      "settings": "Configuracion"
+    },
+    "dashboard": {
+      "eyebrow": "Hoy en BiteWise",
+      "title": "Hola, {{name}}",
+      "subtitle": "Semana 3 en curso con objetivo de ganar musculo. Revisa tu avance y entra rapido a las tareas clave.",
+      "primaryAction": "Registrar comida",
+      "metricsLabel": "Resumen de progreso del paciente",
+      "actionsLabel": "Accesos rapidos de paciente",
+      "metrics": {
+        "calories": "Kcal hoy",
+        "caloriesHelper": "de 2,000 objetivo",
+        "protein": "Proteina",
+        "proteinHelper": "de 150 g objetivo",
+        "streak": "Racha",
+        "streakHelper": "dias sin interrupciones",
+        "goal": "Objetivo",
+        "goalHelper": "completado esta semana"
+      },
+      "macros": {
+        "eyebrow": "Macros del dia",
+        "title": "Distribucion actual",
+        "protein": "Proteina",
+        "carbs": "Carbos",
+        "fat": "Grasas",
+        "fiber": "Fibra"
+      },
+      "meals": {
+        "eyebrow": "Registro",
+        "title": "Comidas de hoy",
+        "add": "Anadir",
+        "breakfast": "Tostada de aguacate",
+        "breakfastDetail": "320 kcal - Desayuno - 7:30",
+        "lunch": "Pollo a la plancha",
+        "lunchDetail": "540 kcal - Almuerzo - 13:00",
+        "dinner": "Pizza fuera del plan",
+        "dinnerDetail": "560 kcal - Cena",
+        "snack": "Snack de tarde pendiente",
+        "snackDetail": "Recomendado: manzana"
+      },
+      "status": {
+        "done": "Listo",
+        "review": "Revisar",
+        "pending": "Pendiente"
+      },
+      "actions": {
+        "plan": "Ver objetivo diario y comidas sugeridas.",
+        "log": "Agregar alimentos al registro de hoy.",
+        "recipes": "Explorar recetas segun tu perfil.",
+        "messages": "Consultar con tu nutricionista.",
+        "settings": "Ajustar preferencias y datos personales."
+      },
+      "water": {
+        "eyebrow": "Hidratacion",
+        "title": "Agua diaria",
+        "label": "Vasos de agua registrados",
+        "action": "Actualizar registro"
+      },
+      "week": {
+        "eyebrow": "Esta semana",
+        "title": "Calorias por dia",
+        "label": "Grafico semanal de calorias",
+        "mon": "L",
+        "tue": "M",
+        "wed": "X",
+        "thu": "J",
+        "fri": "V",
+        "sat": "S",
+        "sun": "D"
+      }
+    },
+    "placeholder": {
+      "eyebrow": "Paciente",
+      "title": "Modulo en preparacion",
+      "subtitle": "Este acceso ya esta protegido y listo para conectar la funcionalidad detallada del contexto.",
+      "primary": "Proximamente",
+      "back": "Volver al inicio"
+    },
+    "plan": {
+      "eyebrow": "Plan personalizado",
+      "title": "Mi plan semanal",
+      "subtitle": "Aqui se conectara el plan nutricional activo, metas diarias y consulta con el profesional.",
+      "primary": "Exportar PDF"
+    },
+    "log": {
+      "eyebrow": "Registro alimentario",
+      "title": "Registrar comida",
+      "subtitle": "Este placeholder reserva la busqueda de alimentos, seleccion de porciones y registro diario.",
+      "primary": "Agregar alimento"
+    },
+    "recipes": {
+      "eyebrow": "Biblioteca",
+      "title": "Recetas para ti",
+      "subtitle": "Las recetas recomendadas se filtraran por objetivo, macros y preferencias del paciente.",
+      "primary": "Buscar receta"
+    },
+    "progress": {
+      "eyebrow": "Seguimiento",
+      "title": "Mi progreso",
+      "subtitle": "Aqui viviran peso, adherencia, tendencia calorica y evolucion de macros.",
+      "primary": "Registrar medida"
+    },
+    "messages": {
+      "eyebrow": "Comunicacion",
+      "title": "Mensajes",
+      "subtitle": "Canal protegido para conversaciones con el nutricionista asignado.",
+      "primary": "Escribir consulta"
+    },
+    "settings": {
+      "eyebrow": "Preferencias",
+      "title": "Configuracion",
+      "subtitle": "Espacio reservado para perfil, restricciones alimentarias, idioma y cuenta.",
+      "primary": "Editar perfil"
+    }
   }
 }

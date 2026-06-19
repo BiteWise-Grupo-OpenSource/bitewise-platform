@@ -1,0 +1,11 @@
+<section class="quick-actions" [attr.aria-label]="'patient.dashboard.actionsLabel' | translate">
+  @for (action of actions; track action.route) {
+    <a mat-stroked-button class="quick-action" [routerLink]="action.route">
+      <span class="action-icon" aria-hidden="true">{{ action.iconLabel }}</span>
+      <span>
+        <strong>{{ action.labelKey | translate }}</strong>
+        <small>{{ action.descriptionKey | translate }}</small>
+      </span>
+    </a>
+  }
+</section>

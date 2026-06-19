@@ -1,0 +1,61 @@
+.metric-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.metric-card {
+  border-color: var(--bw-border);
+  border-radius: 8px;
+  box-shadow: none;
+  min-height: 146px;
+  padding: 18px;
+}
+
+.metric-label,
+.metric-helper {
+  color: var(--bw-muted);
+  font-size: 0.78rem;
+}
+
+.metric-label {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+strong {
+  color: var(--bw-ink);
+  display: block;
+  font-family: var(--bw-display-font);
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  line-height: 1;
+  margin: 12px 0 6px;
+}
+
+mat-progress-bar {
+  margin-top: 16px;
+  --mdc-linear-progress-active-indicator-color: var(--bw-patient);
+  --mdc-linear-progress-track-color: var(--bw-patient-soft);
+}
+
+.tone-protein mat-progress-bar {
+  --mdc-linear-progress-active-indicator-color: #b94c4c;
+  --mdc-linear-progress-track-color: rgba(185, 76, 76, 0.16);
+}
+
+.tone-success mat-progress-bar {
+  --mdc-linear-progress-active-indicator-color: var(--bw-success);
+  --mdc-linear-progress-track-color: var(--bw-nutritionist-soft);
+}
+
+@media (max-width: 980px) {
+  .metric-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .metric-grid {
+    grid-template-columns: 1fr;
+  }
+}

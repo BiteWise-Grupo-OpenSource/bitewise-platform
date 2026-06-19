@@ -105,6 +105,10 @@ export class AuthService {
       return '/auth/onboarding';
     }
 
+    if (session.user.role === 'patient') {
+      return '/patient';
+    }
+
     return '/session';
   }
 
