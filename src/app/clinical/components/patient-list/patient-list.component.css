@@ -1,0 +1,143 @@
+.patient-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px 18px 12px;
+  background: var(--bw-surface);
+  border-color: var(--bw-border);
+  height: 100%;
+}
+
+.list-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.list-header h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  color: var(--bw-ink);
+}
+
+.list-header p {
+  margin: 2px 0 0;
+  font-size: 0.85rem;
+  color: var(--bw-muted);
+}
+
+.count {
+  background: var(--bw-nutritionist-soft);
+  color: var(--bw-nutritionist);
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 2px 12px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.search {
+  width: 100%;
+}
+
+.rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 440px;
+  overflow-y: auto;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--bw-border);
+  border-radius: 14px;
+  background: var(--bw-surface-muted);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.row:hover {
+  border-color: var(--bw-nutritionist);
+}
+
+.row:focus-visible {
+  outline: 2px solid var(--bw-nutritionist);
+  outline-offset: 2px;
+}
+
+.row.selected {
+  border-color: var(--bw-nutritionist);
+  background: var(--bw-nutritionist-soft);
+}
+
+.row-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.row-main .name {
+  font-weight: 600;
+  color: var(--bw-ink);
+}
+
+.row-main .goal {
+  font-size: 0.82rem;
+  color: var(--bw-muted);
+}
+
+.row-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.status {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.status-active {
+  background: var(--bw-nutritionist-soft);
+  color: var(--bw-nutritionist);
+}
+
+.status-review {
+  background: color-mix(in srgb, var(--bw-warning) 18%, white);
+  color: var(--bw-warning);
+}
+
+.status-inactive {
+  background: var(--bw-surface-muted);
+  color: var(--bw-muted);
+  border: 1px solid var(--bw-border);
+}
+
+.adherence {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--bw-ink);
+}
+
+.empty {
+  color: var(--bw-muted);
+  padding: 16px 4px;
+  text-align: center;
+}

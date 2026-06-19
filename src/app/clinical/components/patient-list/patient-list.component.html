@@ -1,0 +1,50 @@
+<mat-card appearance="outlined" class="patient-list">
+  <header class="list-header">
+    <div>
+      <h2 id="patient-list-title">{{ 'clinical.patients.title' | translate }}</h2>
+      <p>{{ 'clinical.patients.subtitle' | translate }}</p>
+    </div>
+    <span class="count" aria-hidden="true">{{ filtered().length }}</span>
+  </header>
+
+  <mat-form-field appearance="outline" class="search">
+    <mat-label>{{ 'clinical.patients.searchLabel' | translate }}</mat-label>
+    <input
+      matInput
+      type="search"
+      [ngModel]="query()"
+      (ngModelChange)="updateQuery($event)"
+      [placeholder]="'clinical.patients.searchPlaceholder' | translate"
+    />
+  </mat-form-field>
+
+  @if (filtered().length) {
+    <ul class="rows" role="listbox" [attr.aria-label]="'clinical.patients.title' | translate">
+      @for (patient of filtered(); track patient.id) {
+        <li>
+          <button
+            type="button"
+            class="row"
+            role="option"
+            [class.selected]="patient.id === selectedId()"
+            [attr.aria-selected]="patient.id === selectedId()"
+            (click)="choose(patient.id)"
+          >
+            <span class="row-main">
+              <span class="name">{{ patient.fullName }}</span>
+              <span class="goal">{{ ('clinical.goals.' + patient.goal) | translate }}</span>
+            </span>
+            <span class="row-side">
+              <span class="status" [class]="'status-' + patient.status">
+                {{ ('clinical.status.' + patient.status) | translate }}
+              </span>
+              <span class="adherence">{{ patient.adherence }}{{ 'clinical.units.percent' | translate }}</span>
+            </span>
+          </button>
+        </li>
+      }
+    </ul>
+  } @else {
+    <p class="empty">{{ 'clinical.patients.empty' | translate }}</p>
+  }
+</mat-card>

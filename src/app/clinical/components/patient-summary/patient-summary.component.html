@@ -1,0 +1,82 @@
+<mat-card appearance="outlined" class="detail">
+  @if (patient(); as p) {
+    <header class="detail-header">
+      <div>
+        <p class="eyebrow">{{ 'clinical.detail.eyebrow' | translate }}</p>
+        <h2 id="patient-detail-title">{{ p.fullName }}</h2>
+        <p class="meta">
+          {{ p.age }} {{ 'clinical.units.years' | translate }}
+          <span aria-hidden="true">&middot;</span>
+          {{ ('clinical.goals.' + p.goal) | translate }}
+        </p>
+      </div>
+      <span class="status" [class]="'status-' + p.status">{{ ('clinical.status.' + p.status) | translate }}</span>
+    </header>
+
+    <section class="plan">
+      <div class="plan-head">
+        <span class="label">{{ 'clinical.detail.planLabel' | translate }}</span>
+        <strong>{{ ('clinical.plans.' + p.planKey) | translate }}</strong>
+      </div>
+      <div class="plan-adherence">
+        <span class="label">{{ 'clinical.detail.adherenceLabel' | translate }}</span>
+        <mat-progress-bar
+          mode="determinate"
+          [value]="p.adherence"
+          [attr.aria-label]="'clinical.detail.adherenceLabel' | translate"
+        />
+        <span class="value">{{ p.adherence }}{{ 'clinical.units.percent' | translate }}</span>
+      </div>
+    </section>
+
+    <mat-divider />
+
+    <dl class="metrics">
+      <div>
+        <dt>{{ 'clinical.detail.heightLabel' | translate }}</dt>
+        <dd>{{ p.heightCm }} {{ 'clinical.units.cm' | translate }}</dd>
+      </div>
+      <div>
+        <dt>{{ 'clinical.detail.weightLabel' | translate }}</dt>
+        <dd>{{ p.weightKg }} {{ 'clinical.units.kg' | translate }}</dd>
+      </div>
+      <div>
+        <dt>{{ 'clinical.detail.bmiLabel' | translate }}</dt>
+        <dd>{{ p.bmi }}</dd>
+      </div>
+      <div>
+        <dt>{{ 'clinical.detail.lastVisitLabel' | translate }}</dt>
+        <dd>{{ p.lastVisit | date: 'mediumDate' }}</dd>
+      </div>
+      <div>
+        <dt>{{ 'clinical.detail.nextVisitLabel' | translate }}</dt>
+        <dd>{{ p.nextVisit | date: 'mediumDate' }}</dd>
+      </div>
+    </dl>
+
+    <section class="conditions">
+      <span class="label">{{ 'clinical.detail.conditionsLabel' | translate }}</span>
+      <mat-chip-set [attr.aria-label]="'clinical.detail.conditionsLabel' | translate">
+        @for (condition of p.conditions; track condition) {
+          <mat-chip>{{ ('clinical.conditions.' + condition) | translate }}</mat-chip>
+        }
+      </mat-chip-set>
+    </section>
+
+    <section class="note">
+      <span class="label">{{ 'clinical.detail.noteLabel' | translate }}</span>
+      <p>{{ ('clinical.notes.' + p.noteKey) | translate }}</p>
+    </section>
+
+    <footer class="detail-actions">
+      <button type="button" mat-flat-button disabled>{{ 'clinical.detail.openPlan' | translate }}</button>
+      <button type="button" mat-stroked-button disabled>{{ 'clinical.detail.message' | translate }}</button>
+      <span class="hint">{{ 'clinical.placeholders.comingSoon' | translate }}</span>
+    </footer>
+  } @else {
+    <div class="empty">
+      <h2 id="patient-detail-title">{{ 'clinical.detail.emptyTitle' | translate }}</h2>
+      <p>{{ 'clinical.detail.emptySubtitle' | translate }}</p>
+    </div>
+  }
+</mat-card>

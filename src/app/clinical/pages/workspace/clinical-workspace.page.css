@@ -1,0 +1,239 @@
+.workspace {
+  min-height: 100vh;
+  background: var(--bw-bg);
+  color: var(--bw-ink);
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bw-surface);
+  color: var(--bw-ink);
+  border-bottom: 1px solid var(--bw-border);
+  box-shadow: 0 1px 0 var(--bw-border);
+}
+
+.topbar .brand {
+  font-family: var(--bw-display-font);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.topbar .brand-tag {
+  font-size: 0.78rem;
+  color: var(--bw-nutritionist);
+  background: var(--bw-nutritionist-soft);
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.content {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 24px 20px 56px;
+  display: grid;
+  gap: 24px;
+}
+
+.hero .eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--bw-nutritionist);
+}
+
+.hero h1 {
+  margin: 6px 0 4px;
+  font-family: var(--bw-display-font);
+  font-size: clamp(1.6rem, 1.2rem + 1.5vw, 2.2rem);
+}
+
+.hero .subtitle {
+  margin: 0;
+  max-width: 60ch;
+  color: var(--bw-muted);
+}
+
+.panels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.panel {
+  padding: 18px 20px;
+  background: var(--bw-surface);
+  border-color: var(--bw-border);
+}
+
+.panel-head h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.panel-head p {
+  margin: 2px 0 12px;
+  font-size: 0.85rem;
+  color: var(--bw-muted);
+}
+
+.panel-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.panel-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--bw-surface-muted);
+}
+
+.panel-row.unread {
+  background: var(--bw-nutritionist-soft);
+}
+
+.panel-row-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.panel-row-main .primary {
+  font-weight: 600;
+  color: var(--bw-ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.panel-row-main .secondary {
+  font-size: 0.82rem;
+  color: var(--bw-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--bw-nutritionist);
+  display: inline-block;
+}
+
+.panel-row-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.priority {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.priority-high {
+  background: color-mix(in srgb, var(--bw-error) 16%, white);
+  color: var(--bw-error);
+}
+
+.priority-medium {
+  background: color-mix(in srgb, var(--bw-warning) 18%, white);
+  color: var(--bw-warning);
+}
+
+.priority-low {
+  background: var(--bw-surface-muted);
+  color: var(--bw-muted);
+  border: 1px solid var(--bw-border);
+}
+
+.due {
+  font-size: 0.78rem;
+  color: var(--bw-muted);
+}
+
+.master-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+.placeholders-title {
+  margin: 0 0 12px;
+  font-size: 1.05rem;
+}
+
+.placeholder-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.placeholder-card {
+  padding: 18px 20px;
+  background: var(--bw-surface);
+  border-color: var(--bw-border);
+  border-style: dashed;
+}
+
+.placeholder-card h3 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+}
+
+.placeholder-card p {
+  margin: 0 0 12px;
+  color: var(--bw-muted);
+  font-size: 0.88rem;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--bw-info);
+  background: color-mix(in srgb, var(--bw-info) 14%, white);
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.empty {
+  color: var(--bw-muted);
+  padding: 8px 2px;
+}
+
+@media (max-width: 860px) {
+  .master-detail {
+    grid-template-columns: 1fr;
+  }
+}

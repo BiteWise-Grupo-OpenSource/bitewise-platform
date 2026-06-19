@@ -1,0 +1,106 @@
+<div class="workspace">
+  <mat-toolbar class="topbar">
+    <span class="brand">{{ 'app.brand' | translate }}</span>
+    <span class="brand-tag">{{ 'clinical.workspace.tag' | translate }}</span>
+    <span class="spacer"></span>
+    <app-language-switcher />
+    <button type="button" mat-stroked-button (click)="logout()">
+      {{ 'clinical.workspace.logout' | translate }}
+    </button>
+  </mat-toolbar>
+
+  <main class="content">
+    <header class="hero">
+      <p class="eyebrow">{{ 'clinical.workspace.eyebrow' | translate }}</p>
+      <h1>{{ 'clinical.workspace.greeting' | translate: { name: user()?.displayName } }}</h1>
+      <p class="subtitle">{{ 'clinical.workspace.subtitle' | translate }}</p>
+    </header>
+
+    <app-clinical-summary [profile]="clinical.profile()" [kpis]="clinical.kpis()" />
+
+    <section class="panels">
+      <mat-card appearance="outlined" class="panel" aria-labelledby="reviews-title">
+        <header class="panel-head">
+          <h2 id="reviews-title">{{ 'clinical.reviews.title' | translate }}</h2>
+          <p>{{ 'clinical.reviews.subtitle' | translate }}</p>
+        </header>
+        @if (clinical.pendingReviews().length) {
+          <ul class="panel-rows">
+            @for (review of clinical.pendingReviews(); track review.id) {
+              <li class="panel-row">
+                <span class="panel-row-main">
+                  <span class="primary">{{ review.patientName }}</span>
+                  <span class="secondary">{{ ('clinical.reviewType.' + review.type) | translate }}</span>
+                </span>
+                <span class="panel-row-side">
+                  <span class="priority" [class]="'priority-' + review.priority">
+                    {{ ('clinical.priority.' + review.priority) | translate }}
+                  </span>
+                  <span class="due">{{ review.dueDate | date: 'mediumDate' }}</span>
+                </span>
+              </li>
+            }
+          </ul>
+        } @else {
+          <p class="empty">{{ 'clinical.reviews.empty' | translate }}</p>
+        }
+      </mat-card>
+
+      <mat-card appearance="outlined" class="panel" aria-labelledby="messages-title">
+        <header class="panel-head">
+          <h2 id="messages-title">{{ 'clinical.messages.title' | translate }}</h2>
+          <p>{{ 'clinical.messages.subtitle' | translate }}</p>
+        </header>
+        @if (clinical.messages().length) {
+          <ul class="panel-rows">
+            @for (message of clinical.messages(); track message.id) {
+              <li class="panel-row" [class.unread]="message.unread">
+                <span class="panel-row-main">
+                  <span class="primary">
+                    {{ message.patientName }}
+                    @if (message.unread) {
+                      <span class="dot" [attr.aria-label]="'clinical.messages.unread' | translate"></span>
+                    }
+                  </span>
+                  <span class="secondary">{{ ('clinical.messages.samples.' + message.previewKey) | translate }}</span>
+                </span>
+                <span class="panel-row-side">
+                  <span class="due">{{ message.sentAt | date: 'short' }}</span>
+                </span>
+              </li>
+            }
+          </ul>
+        } @else {
+          <p class="empty">{{ 'clinical.messages.empty' | translate }}</p>
+        }
+      </mat-card>
+    </section>
+
+    <section class="master-detail">
+      <app-patient-list
+        [patients]="clinical.patients()"
+        [selectedId]="clinical.selectedPatientId()"
+        (select)="clinical.selectPatient($event)"
+      />
+      <app-patient-summary [patient]="clinical.selectedPatient()" />
+    </section>
+
+    <section class="placeholders" aria-labelledby="placeholders-title">
+      <h2 id="placeholders-title" class="placeholders-title">
+        {{ 'clinical.placeholders.sectionTitle' | translate }}
+      </h2>
+      <div class="placeholder-grid">
+        <mat-card appearance="outlined" class="placeholder-card">
+          <h3>{{ 'clinical.placeholders.nutritionTitle' | translate }}</h3>
+          <p>{{ 'clinical.placeholders.nutritionDesc' | translate }}</p>
+          <span class="badge">{{ 'clinical.placeholders.comingSoon' | translate }}</span>
+        </mat-card>
+        <mat-card appearance="outlined" class="placeholder-card">
+          <h3>{{ 'clinical.placeholders.communicationTitle' | translate }}</h3>
+          <p>{{ 'clinical.placeholders.communicationDesc' | translate }}</p>
+          <span class="badge">{{ 'clinical.placeholders.comingSoon' | translate }}</span>
+        </mat-card>
+      </div>
+    </section>
+  </main>
+</div>
