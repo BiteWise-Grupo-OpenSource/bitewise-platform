@@ -38,11 +38,6 @@ export const routes: Routes = [
     loadChildren: () => import('./nutrition/nutrition.routes').then((m) => m.nutritionRoutes)
   },
   {
-    path: 'communication',
-    canActivate: [authGuard, roleGuard],
-    loadChildren: () => import('./communication/communication.routes').then((m) => m.communicationRoutes)
-  },
-  {
     path: 'session',
     canActivate: [authGuard, nutritionistRedirectGuard],
     loadComponent: () => import('./iam/pages/session/session.page').then((m) => m.SessionPage)
