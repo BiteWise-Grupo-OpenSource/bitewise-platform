@@ -1,0 +1,157 @@
+.detail {
+  padding: 20px 22px;
+  background: var(--bw-surface);
+  border-color: var(--bw-border);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.detail-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  color: var(--bw-nutritionist);
+  font-weight: 600;
+}
+
+.detail-header h2 {
+  margin: 4px 0 2px;
+  font-family: var(--bw-display-font);
+  font-size: 1.4rem;
+  color: var(--bw-ink);
+}
+
+.detail-header .meta {
+  margin: 0;
+  color: var(--bw-muted);
+  font-size: 0.9rem;
+}
+
+.status {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 3px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.status-active {
+  background: var(--bw-nutritionist-soft);
+  color: var(--bw-nutritionist);
+}
+
+.status-review {
+  background: color-mix(in srgb, var(--bw-warning) 18%, white);
+  color: var(--bw-warning);
+}
+
+.status-inactive {
+  background: var(--bw-surface-muted);
+  color: var(--bw-muted);
+  border: 1px solid var(--bw-border);
+}
+
+.label {
+  display: block;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--bw-muted);
+  margin-bottom: 4px;
+}
+
+.plan {
+  display: grid;
+  gap: 14px;
+}
+
+.plan-head strong {
+  color: var(--bw-ink);
+  font-size: 1.05rem;
+}
+
+.plan-adherence {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 6px 12px;
+}
+
+.plan-adherence .label {
+  grid-column: 1 / -1;
+  margin-bottom: 0;
+}
+
+.plan-adherence mat-progress-bar {
+  border-radius: 999px;
+}
+
+.plan-adherence .value {
+  font-weight: 600;
+  color: var(--bw-nutritionist);
+}
+
+.metrics {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 14px;
+}
+
+.metrics dt {
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--bw-muted);
+}
+
+.metrics dd {
+  margin: 2px 0 0;
+  font-weight: 600;
+  color: var(--bw-ink);
+}
+
+.note p {
+  margin: 0;
+  color: var(--bw-ink);
+  line-height: 1.5;
+}
+
+.detail-actions {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+.detail-actions .hint {
+  font-size: 0.78rem;
+  color: var(--bw-muted);
+}
+
+.empty {
+  margin: auto;
+  text-align: center;
+  color: var(--bw-muted);
+  padding: 32px 8px;
+}
+
+.empty h2 {
+  margin: 0 0 6px;
+  color: var(--bw-ink);
+  font-size: 1.2rem;
+}

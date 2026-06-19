@@ -82,5 +82,129 @@
       "onboardingPending": "Pending",
       "tokenLabel": "Mock JWT"
     }
+  },
+  "clinical": {
+    "workspace": {
+      "tag": "Clinical workspace",
+      "eyebrow": "Professional workspace",
+      "greeting": "Good to see you, {{name}}",
+      "subtitle": "Review your active patients, pending tasks and messages from a single protected space.",
+      "logout": "Sign out"
+    },
+    "profile": {
+      "eyebrow": "Professional summary",
+      "titleClinical": "Clinical Nutritionist",
+      "licenseLabel": "License",
+      "specialtiesLabel": "Specialties",
+      "specialties": {
+        "metabolic": "Metabolic health",
+        "sports": "Sports nutrition",
+        "clinical": "Clinical nutrition"
+      }
+    },
+    "kpis": {
+      "activePatients": "Active patients",
+      "pendingReviews": "Pending reviews",
+      "unreadMessages": "Unread messages",
+      "averageAdherence": "Average adherence"
+    },
+    "reviews": {
+      "title": "Pending reviews",
+      "subtitle": "Plans and checkpoints waiting for your sign-off.",
+      "empty": "No reviews pending. You are all caught up."
+    },
+    "reviewType": {
+      "mealPlan": "Meal plan",
+      "progress": "Progress check",
+      "lab": "Lab results"
+    },
+    "priority": {
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "messages": {
+      "title": "Unread messages",
+      "subtitle": "Latest activity from your patients.",
+      "empty": "No messages yet.",
+      "unread": "Unread",
+      "samples": {
+        "question1": "Can I swap the afternoon snack for fruit?",
+        "question2": "Should I keep the plan over the weekend?",
+        "thanks": "Thanks, the new plan is working great!",
+        "reschedule": "Could we move our next appointment?",
+        "update": "Logged my meals for the week."
+      }
+    },
+    "patients": {
+      "title": "Patients",
+      "subtitle": "Select a patient to open their record.",
+      "searchLabel": "Search patients",
+      "searchPlaceholder": "Search by name",
+      "empty": "No patients match your search."
+    },
+    "status": {
+      "active": "Active",
+      "review": "In review",
+      "inactive": "Inactive"
+    },
+    "goals": {
+      "weightLoss": "Weight loss",
+      "muscleGain": "Muscle gain",
+      "clinicalNutrition": "Clinical nutrition",
+      "sportsNutrition": "Sports nutrition",
+      "energy": "More energy"
+    },
+    "plans": {
+      "mediterranean1800": "Mediterranean plan - 1800 kcal",
+      "lowCarb1600": "Low-carb plan - 1600 kcal",
+      "highProtein2100": "High-protein plan - 2100 kcal",
+      "balanced2000": "Balanced plan - 2000 kcal"
+    },
+    "conditions": {
+      "none": "No conditions",
+      "hypertension": "Hypertension",
+      "type2Diabetes": "Type 2 diabetes",
+      "hypothyroidism": "Hypothyroidism",
+      "celiac": "Celiac disease",
+      "highCholesterol": "High cholesterol"
+    },
+    "notes": {
+      "adjustCarbs": "Adjust carbohydrate intake on training days.",
+      "increaseProtein": "Increase protein at breakfast to support recovery.",
+      "reviewLabs": "Review the latest lab work before the next visit.",
+      "maintainPlan": "Maintain the current plan and reassess in two weeks.",
+      "hydration": "Reinforce hydration around training sessions."
+    },
+    "detail": {
+      "eyebrow": "Patient record",
+      "planLabel": "Current plan",
+      "adherenceLabel": "Adherence",
+      "heightLabel": "Height",
+      "weightLabel": "Weight",
+      "bmiLabel": "BMI",
+      "lastVisitLabel": "Last visit",
+      "nextVisitLabel": "Next visit",
+      "conditionsLabel": "Conditions",
+      "noteLabel": "Clinical note",
+      "openPlan": "Open nutrition plan",
+      "message": "Message patient",
+      "emptyTitle": "No patient selected",
+      "emptySubtitle": "Choose a patient from the list to see their summary."
+    },
+    "placeholders": {
+      "sectionTitle": "Coming next",
+      "nutritionTitle": "Nutrition plans",
+      "nutritionDesc": "Build and assign meal plans from the clinical workspace.",
+      "communicationTitle": "Messaging",
+      "communicationDesc": "Two-way patient messaging will live here.",
+      "comingSoon": "Coming soon"
+    },
+    "units": {
+      "percent": "%",
+      "years": "yrs",
+      "cm": "cm",
+      "kg": "kg"
+    }
   }
 }

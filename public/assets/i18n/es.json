@@ -82,5 +82,129 @@
       "onboardingPending": "Pendiente",
       "tokenLabel": "JWT mock"
     }
+  },
+  "clinical": {
+    "workspace": {
+      "tag": "Espacio clinico",
+      "eyebrow": "Espacio profesional",
+      "greeting": "Hola, {{name}}",
+      "subtitle": "Revisa tus pacientes activos, tareas pendientes y mensajes desde un unico espacio protegido.",
+      "logout": "Cerrar sesion"
+    },
+    "profile": {
+      "eyebrow": "Resumen profesional",
+      "titleClinical": "Nutricionista clinico",
+      "licenseLabel": "Colegiatura",
+      "specialtiesLabel": "Especialidades",
+      "specialties": {
+        "metabolic": "Salud metabolica",
+        "sports": "Nutricion deportiva",
+        "clinical": "Nutricion clinica"
+      }
+    },
+    "kpis": {
+      "activePatients": "Pacientes activos",
+      "pendingReviews": "Revisiones pendientes",
+      "unreadMessages": "Mensajes sin leer",
+      "averageAdherence": "Adherencia promedio"
+    },
+    "reviews": {
+      "title": "Revisiones pendientes",
+      "subtitle": "Planes y controles que esperan tu aprobacion.",
+      "empty": "No hay revisiones pendientes. Estas al dia."
+    },
+    "reviewType": {
+      "mealPlan": "Plan de comidas",
+      "progress": "Control de progreso",
+      "lab": "Resultados de laboratorio"
+    },
+    "priority": {
+      "high": "Alta",
+      "medium": "Media",
+      "low": "Baja"
+    },
+    "messages": {
+      "title": "Mensajes sin leer",
+      "subtitle": "Ultima actividad de tus pacientes.",
+      "empty": "Aun no hay mensajes.",
+      "unread": "Sin leer",
+      "samples": {
+        "question1": "Puedo cambiar la merienda de la tarde por fruta?",
+        "question2": "Mantengo el plan durante el fin de semana?",
+        "thanks": "Gracias, el nuevo plan funciona muy bien!",
+        "reschedule": "Podriamos mover nuestra proxima cita?",
+        "update": "Registre mis comidas de la semana."
+      }
+    },
+    "patients": {
+      "title": "Pacientes",
+      "subtitle": "Selecciona un paciente para abrir su ficha.",
+      "searchLabel": "Buscar pacientes",
+      "searchPlaceholder": "Buscar por nombre",
+      "empty": "Ningun paciente coincide con tu busqueda."
+    },
+    "status": {
+      "active": "Activo",
+      "review": "En revision",
+      "inactive": "Inactivo"
+    },
+    "goals": {
+      "weightLoss": "Perdida de peso",
+      "muscleGain": "Ganancia muscular",
+      "clinicalNutrition": "Nutricion clinica",
+      "sportsNutrition": "Nutricion deportiva",
+      "energy": "Mas energia"
+    },
+    "plans": {
+      "mediterranean1800": "Plan mediterraneo - 1800 kcal",
+      "lowCarb1600": "Plan bajo en carbohidratos - 1600 kcal",
+      "highProtein2100": "Plan alto en proteina - 2100 kcal",
+      "balanced2000": "Plan equilibrado - 2000 kcal"
+    },
+    "conditions": {
+      "none": "Sin condiciones",
+      "hypertension": "Hipertension",
+      "type2Diabetes": "Diabetes tipo 2",
+      "hypothyroidism": "Hipotiroidismo",
+      "celiac": "Enfermedad celiaca",
+      "highCholesterol": "Colesterol alto"
+    },
+    "notes": {
+      "adjustCarbs": "Ajustar el consumo de carbohidratos en dias de entrenamiento.",
+      "increaseProtein": "Aumentar la proteina en el desayuno para favorecer la recuperacion.",
+      "reviewLabs": "Revisar los ultimos analisis antes de la proxima visita.",
+      "maintainPlan": "Mantener el plan actual y reevaluar en dos semanas.",
+      "hydration": "Reforzar la hidratacion alrededor de los entrenamientos."
+    },
+    "detail": {
+      "eyebrow": "Ficha del paciente",
+      "planLabel": "Plan actual",
+      "adherenceLabel": "Adherencia",
+      "heightLabel": "Estatura",
+      "weightLabel": "Peso",
+      "bmiLabel": "IMC",
+      "lastVisitLabel": "Ultima visita",
+      "nextVisitLabel": "Proxima visita",
+      "conditionsLabel": "Condiciones",
+      "noteLabel": "Nota clinica",
+      "openPlan": "Abrir plan nutricional",
+      "message": "Enviar mensaje",
+      "emptyTitle": "Sin paciente seleccionado",
+      "emptySubtitle": "Elige un paciente de la lista para ver su resumen."
+    },
+    "placeholders": {
+      "sectionTitle": "Proximamente",
+      "nutritionTitle": "Planes nutricionales",
+      "nutritionDesc": "Crea y asigna planes de comidas desde el espacio clinico.",
+      "communicationTitle": "Mensajeria",
+      "communicationDesc": "Aqui vivira la mensajeria bidireccional con pacientes.",
+      "comingSoon": "Proximamente"
+    },
+    "units": {
+      "percent": "%",
+      "years": "años",
+      "cm": "cm",
+      "kg": "kg"
+    }
   }
 }

@@ -1,0 +1,41 @@
+<section class="summary" aria-labelledby="clinical-summary-title">
+  <mat-card appearance="outlined" class="profile-card">
+    <p class="eyebrow">{{ 'clinical.profile.eyebrow' | translate }}</p>
+    <h2 id="clinical-summary-title">{{ profile().displayName }}</h2>
+    <p class="title">{{ profile().titleKey | translate }}</p>
+    <p class="license">
+      <span>{{ 'clinical.profile.licenseLabel' | translate }}:</span>
+      <strong>{{ profile().license }}</strong>
+    </p>
+    <mat-chip-set [attr.aria-label]="'clinical.profile.specialtiesLabel' | translate">
+      @for (specialty of profile().specialtyKeys; track specialty) {
+        <mat-chip>{{ specialty | translate }}</mat-chip>
+      }
+    </mat-chip-set>
+  </mat-card>
+
+  <div class="kpi-grid">
+    <mat-card appearance="outlined" class="kpi-card">
+      <span class="kpi-value">{{ kpis().activePatients }}</span>
+      <span class="kpi-label">{{ 'clinical.kpis.activePatients' | translate }}</span>
+    </mat-card>
+    <mat-card appearance="outlined" class="kpi-card">
+      <span class="kpi-value">{{ kpis().pendingReviews }}</span>
+      <span class="kpi-label">{{ 'clinical.kpis.pendingReviews' | translate }}</span>
+    </mat-card>
+    <mat-card appearance="outlined" class="kpi-card">
+      <span class="kpi-value">{{ kpis().unreadMessages }}</span>
+      <span class="kpi-label">{{ 'clinical.kpis.unreadMessages' | translate }}</span>
+    </mat-card>
+    <mat-card appearance="outlined" class="kpi-card">
+      <span class="kpi-value">{{ kpis().averageAdherence }}{{ 'clinical.units.percent' | translate }}</span>
+      <span class="kpi-label">{{ 'clinical.kpis.averageAdherence' | translate }}</span>
+      <mat-progress-bar
+        class="kpi-bar"
+        mode="determinate"
+        [value]="kpis().averageAdherence"
+        [attr.aria-label]="'clinical.kpis.averageAdherence' | translate"
+      />
+    </mat-card>
+  </div>
+</section>

@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { nutritionistRedirectGuard } from './clinical/guards/nutritionist-redirect.guard';
 import { authGuard } from './iam/guards/auth.guard';
 import { guestGuard } from './iam/guards/guest.guard';
 import { roleGuard } from './iam/guards/role.guard';
@@ -26,8 +27,14 @@ export const routes: Routes = [
     loadComponent: () => import('./iam/pages/onboarding/onboarding.page').then((m) => m.OnboardingPage)
   },
   {
+    path: 'clinical',
+    canActivate: [authGuard, roleGuard],
+    data: { roles: ['nutritionist'] },
+    loadChildren: () => import('./clinical/clinical.routes').then((m) => m.clinicalRoutes)
+  },
+  {
     path: 'session',
-    canActivate: [authGuard],
+    canActivate: [authGuard, nutritionistRedirectGuard],
     loadComponent: () => import('./iam/pages/session/session.page').then((m) => m.SessionPage)
   },
   {
