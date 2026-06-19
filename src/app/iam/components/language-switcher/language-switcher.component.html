@@ -1,0 +1,9 @@
+<mat-button-toggle-group
+  class="language-switcher"
+  [value]="currentLang()"
+  (change)="changeLanguage($event.value)"
+  [attr.aria-label]="'language.label' | translate"
+>
+  <mat-button-toggle value="es">ES</mat-button-toggle>
+  <mat-button-toggle value="en">EN</mat-button-toggle>
+</mat-button-toggle-group>

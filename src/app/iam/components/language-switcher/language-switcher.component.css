@@ -1,0 +1,15 @@
+:host {
+  display: inline-flex;
+}
+
+.language-switcher {
+  border-radius: 999px;
+  overflow: hidden;
+  border-color: color-mix(in srgb, var(--bw-ink) 14%, transparent);
+}
+
+.language-switcher .mat-button-toggle {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0;
+}

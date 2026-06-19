@@ -1,0 +1,43 @@
+<main class="session-page" [class.nutritionist]="session()?.user?.role === 'nutritionist'">
+  <header class="session-header">
+    <span class="brand">{{ 'app.brand' | translate }}</span>
+    <div class="header-actions">
+      <app-language-switcher />
+      <button type="button" mat-stroked-button (click)="logout()">{{ 'iam.session.logout' | translate }}</button>
+    </div>
+  </header>
+
+  @if (session(); as activeSession) {
+    <section class="session-hero">
+      <div class="avatar" aria-hidden="true">{{ initials() }}</div>
+      <div>
+        <mat-chip-set [attr.aria-label]="'iam.session.roleLabel' | translate">
+          <mat-chip>{{ roleLabelKey() | translate }}</mat-chip>
+        </mat-chip-set>
+        <h1>{{ 'iam.session.title' | translate: { name: activeSession.user.displayName } }}</h1>
+        <p>{{ 'iam.session.subtitle' | translate }}</p>
+      </div>
+    </section>
+
+    <section class="session-grid">
+      <mat-card appearance="outlined">
+        <span>{{ 'iam.session.emailLabel' | translate }}</span>
+        <strong>{{ activeSession.user.email }}</strong>
+      </mat-card>
+      <mat-card appearance="outlined">
+        <span>{{ 'iam.session.onboardingLabel' | translate }}</span>
+        <strong>
+          {{
+            (activeSession.user.onboardingCompleted
+              ? 'iam.session.onboardingComplete'
+              : 'iam.session.onboardingPending') | translate
+          }}
+        </strong>
+      </mat-card>
+      <mat-card appearance="outlined">
+        <span>{{ 'iam.session.tokenLabel' | translate }}</span>
+        <code>{{ activeSession.token.slice(0, 24) }}...</code>
+      </mat-card>
+    </section>
+  }
+</main>

@@ -1,0 +1,68 @@
+<app-auth-shell
+  eyebrowKey="iam.register.eyebrow"
+  titleKey="iam.register.title"
+  subtitleKey="iam.register.subtitle"
+>
+  <form class="auth-form" [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form-header">
+      <h2>{{ 'iam.register.formTitle' | translate }}</h2>
+      <p>{{ 'iam.register.formSubtitle' | translate }}</p>
+    </div>
+
+    <app-role-selector
+      [value]="role()"
+      labelKey="iam.register.roleLabel"
+      (valueChange)="role.set($event)"
+    />
+
+    @if (errorKey()) {
+      <div class="form-error" role="alert">{{ errorKey()! | translate }}</div>
+    }
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'iam.fields.displayName' | translate }}</mat-label>
+      <input matInput type="text" formControlName="displayName" autocomplete="name" />
+      @if (form.controls.displayName.hasError('required')) {
+        <mat-error>{{ 'iam.errors.required' | translate }}</mat-error>
+      }
+      @if (form.controls.displayName.hasError('minlength')) {
+        <mat-error>{{ 'iam.errors.nameLength' | translate }}</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'iam.fields.email' | translate }}</mat-label>
+      <input matInput type="email" formControlName="email" autocomplete="email" />
+      @if (form.controls.email.hasError('email')) {
+        <mat-error>{{ 'iam.errors.email' | translate }}</mat-error>
+      }
+      @if (form.controls.email.hasError('required')) {
+        <mat-error>{{ 'iam.errors.required' | translate }}</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'iam.fields.password' | translate }}</mat-label>
+      <input matInput type="password" formControlName="password" autocomplete="new-password" />
+      @if (form.controls.password.hasError('required')) {
+        <mat-error>{{ 'iam.errors.required' | translate }}</mat-error>
+      }
+      @if (form.controls.password.hasError('minlength')) {
+        <mat-error>{{ 'iam.errors.passwordLength' | translate }}</mat-error>
+      }
+    </mat-form-field>
+
+    <button type="submit" mat-flat-button color="primary" class="submit-button" [disabled]="loading()">
+      {{ 'iam.register.action' | translate }}
+    </button>
+
+    @if (loading()) {
+      <mat-progress-bar mode="indeterminate" />
+    }
+
+    <p class="switch-link">
+      {{ 'iam.register.haveAccount' | translate }}
+      <a routerLink="/auth/login">{{ 'iam.register.signIn' | translate }}</a>
+    </p>
+  </form>
+</app-auth-shell>

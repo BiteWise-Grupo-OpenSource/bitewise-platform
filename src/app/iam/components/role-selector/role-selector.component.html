@@ -1,0 +1,22 @@
+<div class="role-label">{{ labelKey | translate }}</div>
+<div class="role-grid" role="radiogroup" [attr.aria-label]="labelKey | translate">
+  @for (role of roles; track role.value) {
+    <button
+      type="button"
+      mat-stroked-button
+      class="role-option"
+      [class.active]="value === role.value"
+      [class.patient]="role.className === 'patient'"
+      [class.nutritionist]="role.className === 'nutritionist'"
+      [attr.aria-checked]="value === role.value"
+      role="radio"
+      (click)="selectRole(role.value)"
+    >
+      <span class="role-mark"></span>
+      <span>
+        <strong>{{ role.titleKey | translate }}</strong>
+        <small>{{ role.hintKey | translate }}</small>
+      </span>
+    </button>
+  }
+</div>

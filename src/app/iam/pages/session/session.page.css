@@ -1,0 +1,118 @@
+:host {
+  display: block;
+  min-height: 100dvh;
+}
+
+.session-page {
+  --active-accent: var(--bw-patient);
+  background:
+    linear-gradient(115deg, color-mix(in srgb, var(--active-accent) 13%, transparent), transparent 38%),
+    var(--bw-bg);
+  min-height: 100dvh;
+  padding: clamp(1rem, 4vw, 3rem);
+}
+
+.session-page.nutritionist {
+  --active-accent: var(--bw-nutritionist);
+}
+
+.session-header,
+.header-actions {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.brand {
+  color: var(--bw-ink);
+  font-family: var(--bw-display-font);
+  font-size: 1.45rem;
+  font-weight: 900;
+}
+
+.session-hero {
+  align-items: center;
+  display: flex;
+  gap: clamp(1rem, 3vw, 1.6rem);
+  margin: clamp(3rem, 11vh, 7rem) auto 2rem;
+  max-width: 62rem;
+}
+
+.avatar {
+  align-items: center;
+  background: var(--active-accent);
+  border-radius: 1.2rem;
+  color: white;
+  display: flex;
+  flex: 0 0 clamp(4.5rem, 12vw, 7rem);
+  font-family: var(--bw-display-font);
+  font-size: clamp(1.7rem, 5vw, 3rem);
+  font-weight: 900;
+  height: clamp(4.5rem, 12vw, 7rem);
+  justify-content: center;
+}
+
+h1 {
+  color: var(--bw-ink);
+  font-family: var(--bw-display-font);
+  font-size: clamp(2.2rem, 7vw, 5rem);
+  line-height: 0.98;
+  margin: 0.8rem 0 0.8rem;
+}
+
+p {
+  color: var(--bw-muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.session-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0 auto;
+  max-width: 62rem;
+}
+
+mat-card {
+  background: color-mix(in srgb, white 88%, var(--bw-bg));
+  border-color: var(--bw-border);
+  border-radius: 0.75rem;
+  display: grid;
+  gap: 0.45rem;
+  padding: 1rem;
+}
+
+mat-card span {
+  color: var(--bw-muted);
+  font-size: 0.77rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+mat-card strong,
+code {
+  color: var(--bw-ink);
+  font-size: 1rem;
+  overflow-wrap: anywhere;
+}
+
+mat-chip {
+  --mdc-chip-elevated-container-color: color-mix(in srgb, var(--active-accent) 13%, white);
+  --mdc-chip-label-text-color: var(--active-accent);
+}
+
+@media (max-width: 760px) {
+  .session-header,
+  .session-hero {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .session-grid {
+    grid-template-columns: 1fr;
+  }
+}

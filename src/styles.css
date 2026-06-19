@@ -1,0 +1,68 @@
+@import '@angular/material/prebuilt-themes/azure-blue.css';
+
+:root {
+  --bw-bg: #f7efe5;
+  --bw-bg-dark: #1f261f;
+  --bw-surface: #fffaf4;
+  --bw-surface-muted: #f1e6d9;
+  --bw-ink: #241f1a;
+  --bw-muted: #756b62;
+  --bw-border: rgba(36, 31, 26, 0.13);
+  --bw-patient: #c4622d;
+  --bw-patient-soft: #f4dfd0;
+  --bw-nutritionist: #2a6e46;
+  --bw-nutritionist-soft: #dbe9dc;
+  --bw-success: #2f7a4f;
+  --bw-warning: #b36b00;
+  --bw-error: #b34234;
+  --bw-info: #326f9f;
+  --bw-shadow: 0 22px 70px rgba(77, 54, 35, 0.14);
+  --bw-display-font: Cambria, Georgia, serif;
+  --bw-body-font: Aptos, 'Segoe UI', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  background: var(--bw-bg);
+  color: var(--bw-ink);
+  font-family: var(--bw-body-font);
+  margin: 0;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+.mat-mdc-form-field {
+  width: 100%;
+}
+
+.mat-mdc-unelevated-button.mat-primary {
+  --mdc-filled-button-container-color: var(--bw-patient);
+  --mdc-filled-button-label-text-color: #fff;
+}
+
+.mat-mdc-outlined-button:not(:disabled) {
+  --mdc-outlined-button-outline-color: var(--bw-border);
+  --mdc-outlined-button-label-text-color: var(--bw-ink);
+}
+
+::selection {
+  background: color-mix(in srgb, var(--bw-patient) 25%, white);
+}

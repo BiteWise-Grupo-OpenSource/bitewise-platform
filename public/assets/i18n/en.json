@@ -1,0 +1,86 @@
+{
+  "app": {
+    "brand": "BiteWise"
+  },
+  "language": {
+    "label": "Language"
+  },
+  "iam": {
+    "roles": {
+      "patient": "Patient",
+      "patientHint": "Follow your plan",
+      "nutritionist": "Nutritionist",
+      "nutritionistHint": "Manage patients"
+    },
+    "fields": {
+      "displayName": "Full name",
+      "email": "Email",
+      "password": "Password"
+    },
+    "errors": {
+      "required": "This field is required.",
+      "email": "Enter a valid email.",
+      "nameLength": "Enter at least 3 characters.",
+      "passwordLength": "Use at least 6 characters."
+    },
+    "login": {
+      "eyebrow": "Mock IAM with JWT",
+      "title": "Your nutrition, organized",
+      "subtitle": "Sign in as a patient or professional to validate identity flow before building business contexts.",
+      "formTitle": "Sign in",
+      "formSubtitle": "Select a role and use demo credentials or a registered account.",
+      "roleLabel": "Sign in as",
+      "action": "Sign in",
+      "invalidCredentials": "Invalid credentials for the selected role.",
+      "noAccount": "No account?",
+      "createAccount": "Create account",
+      "demoTitle": "Demo users",
+      "demoPatient": "Patient: andrea@email.com / 123456",
+      "demoNutritionist": "Nutritionist: dr.carlos@email.com / 123456"
+    },
+    "register": {
+      "eyebrow": "New account",
+      "title": "Start with the right role",
+      "subtitle": "Registration creates a json-server user and signs in automatically with a simulated JWT.",
+      "formTitle": "Create account",
+      "formSubtitle": "Choose patient or nutritionist based on the experience you want to review.",
+      "roleLabel": "Account type",
+      "action": "Create account",
+      "haveAccount": "Already have an account?",
+      "signIn": "Sign in",
+      "emailExists": "An account already exists with that email.",
+      "failed": "The account could not be created."
+    },
+    "onboarding": {
+      "eyebrow": "Patient onboarding",
+      "title": "Complete your starting point",
+      "subtitle": "This step marks the profile as ready to enter the protected experience.",
+      "goalLabel": "Main goal",
+      "activityLabel": "Weekly activity",
+      "notesLabel": "Conditions or preferences",
+      "goals": {
+        "energy": "Improve energy",
+        "weight": "Manage weight",
+        "muscle": "Gain muscle"
+      },
+      "activity": {
+        "light": "Light",
+        "moderate": "Moderate",
+        "high": "High"
+      },
+      "action": "Finish onboarding",
+      "failed": "Onboarding could not be completed."
+    },
+    "session": {
+      "title": "Active session, {{name}}",
+      "subtitle": "IAM is ready: mock token persisted, role resolved, and protected access working.",
+      "roleLabel": "Role",
+      "logout": "Sign out",
+      "emailLabel": "Email",
+      "onboardingLabel": "Onboarding",
+      "onboardingComplete": "Complete",
+      "onboardingPending": "Pending",
+      "tokenLabel": "Mock JWT"
+    }
+  }
+}

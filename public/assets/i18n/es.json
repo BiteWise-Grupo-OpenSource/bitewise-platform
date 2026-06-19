@@ -1,0 +1,86 @@
+{
+  "app": {
+    "brand": "BiteWise"
+  },
+  "language": {
+    "label": "Idioma"
+  },
+  "iam": {
+    "roles": {
+      "patient": "Paciente",
+      "patientHint": "Sigue tu plan",
+      "nutritionist": "Nutricionista",
+      "nutritionistHint": "Gestiona pacientes"
+    },
+    "fields": {
+      "displayName": "Nombre completo",
+      "email": "Email",
+      "password": "Contrasena"
+    },
+    "errors": {
+      "required": "Este campo es obligatorio.",
+      "email": "Ingresa un email valido.",
+      "nameLength": "Ingresa al menos 3 caracteres.",
+      "passwordLength": "Usa al menos 6 caracteres."
+    },
+    "login": {
+      "eyebrow": "IAM mock con JWT",
+      "title": "Tu nutricion entra ordenada",
+      "subtitle": "Accede como paciente o profesional para validar el flujo de identidad antes de construir los contextos de negocio.",
+      "formTitle": "Iniciar sesion",
+      "formSubtitle": "Selecciona el rol y usa credenciales demo o una cuenta registrada.",
+      "roleLabel": "Ingresar como",
+      "action": "Ingresar",
+      "invalidCredentials": "Credenciales incorrectas para el rol seleccionado.",
+      "noAccount": "No tienes cuenta?",
+      "createAccount": "Crear cuenta",
+      "demoTitle": "Usuarios de demo",
+      "demoPatient": "Paciente: andrea@email.com / 123456",
+      "demoNutritionist": "Nutricionista: dr.carlos@email.com / 123456"
+    },
+    "register": {
+      "eyebrow": "Cuenta nueva",
+      "title": "Empieza con el rol correcto",
+      "subtitle": "El registro crea un usuario en json-server e inicia sesion automaticamente con un JWT simulado.",
+      "formTitle": "Crear cuenta",
+      "formSubtitle": "Elige paciente o nutricionista segun la experiencia que quieras revisar.",
+      "roleLabel": "Tipo de cuenta",
+      "action": "Crear cuenta",
+      "haveAccount": "Ya tienes cuenta?",
+      "signIn": "Inicia sesion",
+      "emailExists": "Ya existe una cuenta con ese email.",
+      "failed": "No se pudo crear la cuenta."
+    },
+    "onboarding": {
+      "eyebrow": "Onboarding de paciente",
+      "title": "Completa tu punto de partida",
+      "subtitle": "Este paso marca el perfil como listo para entrar a la experiencia protegida.",
+      "goalLabel": "Objetivo principal",
+      "activityLabel": "Actividad semanal",
+      "notesLabel": "Condiciones o preferencias",
+      "goals": {
+        "energy": "Mejorar energia",
+        "weight": "Gestionar peso",
+        "muscle": "Ganar musculo"
+      },
+      "activity": {
+        "light": "Ligera",
+        "moderate": "Moderada",
+        "high": "Alta"
+      },
+      "action": "Finalizar onboarding",
+      "failed": "No se pudo completar el onboarding."
+    },
+    "session": {
+      "title": "Sesion activa, {{name}}",
+      "subtitle": "IAM esta listo: token mock persistido, rol resuelto y acceso protegido funcionando.",
+      "roleLabel": "Rol",
+      "logout": "Cerrar sesion",
+      "emailLabel": "Email",
+      "onboardingLabel": "Onboarding",
+      "onboardingComplete": "Completado",
+      "onboardingPending": "Pendiente",
+      "tokenLabel": "JWT mock"
+    }
+  }
+}

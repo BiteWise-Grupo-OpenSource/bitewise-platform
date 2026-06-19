@@ -1,0 +1,55 @@
+<main class="onboarding-page">
+  <div class="top-row">
+    <span class="brand">{{ 'app.brand' | translate }}</span>
+    <app-language-switcher />
+  </div>
+
+  <mat-card class="onboarding-card" appearance="outlined">
+    <form [formGroup]="form" (ngSubmit)="complete()">
+      <p class="eyebrow">{{ 'iam.onboarding.eyebrow' | translate }}</p>
+      <h1>{{ 'iam.onboarding.title' | translate }}</h1>
+      <p class="subtitle">{{ 'iam.onboarding.subtitle' | translate }}</p>
+
+      @if (errorKey()) {
+        <div class="form-error" role="alert">{{ errorKey()! | translate }}</div>
+      }
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'iam.onboarding.goalLabel' | translate }}</mat-label>
+        <mat-select formControlName="goal">
+          <mat-option value="energy">{{ 'iam.onboarding.goals.energy' | translate }}</mat-option>
+          <mat-option value="weight">{{ 'iam.onboarding.goals.weight' | translate }}</mat-option>
+          <mat-option value="muscle">{{ 'iam.onboarding.goals.muscle' | translate }}</mat-option>
+        </mat-select>
+        @if (form.controls.goal.hasError('required')) {
+          <mat-error>{{ 'iam.errors.required' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'iam.onboarding.activityLabel' | translate }}</mat-label>
+        <mat-select formControlName="activityLevel">
+          <mat-option value="light">{{ 'iam.onboarding.activity.light' | translate }}</mat-option>
+          <mat-option value="moderate">{{ 'iam.onboarding.activity.moderate' | translate }}</mat-option>
+          <mat-option value="high">{{ 'iam.onboarding.activity.high' | translate }}</mat-option>
+        </mat-select>
+        @if (form.controls.activityLevel.hasError('required')) {
+          <mat-error>{{ 'iam.errors.required' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'iam.onboarding.notesLabel' | translate }}</mat-label>
+        <textarea matInput formControlName="notes" rows="4"></textarea>
+      </mat-form-field>
+
+      <button type="submit" mat-flat-button color="primary" [disabled]="loading()">
+        {{ 'iam.onboarding.action' | translate }}
+      </button>
+
+      @if (loading()) {
+        <mat-progress-bar mode="indeterminate" />
+      }
+    </form>
+  </mat-card>
+</main>

@@ -1,0 +1,39 @@
+.auth-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.form-header h2 {
+  color: var(--bw-ink);
+  font-family: var(--bw-display-font);
+  font-size: 1.65rem;
+  line-height: 1.1;
+  margin: 0 0 0.35rem;
+}
+
+.form-header p,
+.switch-link {
+  color: var(--bw-muted);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.form-error {
+  background: color-mix(in srgb, var(--bw-error) 9%, white);
+  border: 1px solid color-mix(in srgb, var(--bw-error) 26%, transparent);
+  border-radius: 0.65rem;
+  color: var(--bw-error);
+  font-size: 0.9rem;
+  padding: 0.75rem 0.85rem;
+}
+
+.submit-button {
+  min-height: 3rem;
+  width: 100%;
+}
+
+.switch-link a {
+  color: var(--bw-patient);
+  font-weight: 800;
+  margin-left: 0.3rem;
+}
