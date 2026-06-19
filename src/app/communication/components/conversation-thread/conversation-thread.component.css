@@ -1,0 +1,60 @@
+.thread {
+  display: grid;
+  gap: 12px;
+}
+
+.message {
+  display: flex;
+}
+
+.message.own {
+  justify-content: flex-end;
+}
+
+.message.other {
+  justify-content: flex-start;
+}
+
+.bubble {
+  border: 1px solid var(--bw-border);
+  border-radius: 8px;
+  max-width: min(680px, 88%);
+  padding: 12px 14px;
+}
+
+.message.own .bubble {
+  background: var(--bw-nutritionist-soft);
+}
+
+.message.other .bubble {
+  background: var(--bw-surface);
+}
+
+.author {
+  color: var(--bw-muted);
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+p {
+  line-height: 1.5;
+  margin: 0 0 10px;
+}
+
+footer {
+  align-items: center;
+  color: var(--bw-muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+@media (max-width: 620px) {
+  .bubble {
+    max-width: 100%;
+  }
+}

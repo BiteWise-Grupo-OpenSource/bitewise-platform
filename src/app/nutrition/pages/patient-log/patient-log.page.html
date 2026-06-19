@@ -1,0 +1,66 @@
+<section class="log-page">
+  <header class="page-hero">
+    <div>
+      <span class="eyebrow">{{ 'nutrition.log.eyebrow' | translate }}</span>
+      <h1>{{ 'nutrition.log.title' | translate }}</h1>
+      <p>{{ 'nutrition.log.subtitle' | translate }}</p>
+    </div>
+  </header>
+
+  <section class="log-layout">
+    <mat-card appearance="outlined" class="log-form">
+      <h2>{{ 'nutrition.log.formTitle' | translate }}</h2>
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'nutrition.log.foodLabel' | translate }}</mat-label>
+        <mat-select [ngModel]="selectedFoodId()" (ngModelChange)="selectedFoodId.set($event)">
+          @for (food of nutrition.foods(); track food.id) {
+            <mat-option [value]="food.id">{{ food.nameKey | translate }} - {{ food.calories }} {{ 'nutrition.units.kcal' | translate }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'nutrition.log.mealLabel' | translate }}</mat-label>
+        <mat-select [ngModel]="selectedMeal()" (ngModelChange)="selectedMeal.set($event)">
+          @for (meal of mealKinds; track meal) {
+            <mat-option [value]="meal">{{ ('nutrition.meals.' + meal) | translate }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <button type="button" mat-flat-button color="primary" (click)="addEntry()">
+        {{ 'nutrition.log.add' | translate }}
+      </button>
+    </mat-card>
+
+    <mat-card appearance="outlined" class="totals-card">
+      <span class="eyebrow">{{ 'nutrition.log.todayEyebrow' | translate }}</span>
+      <h2>{{ nutrition.todayTotals().calories }} {{ 'nutrition.units.kcal' | translate }}</h2>
+      <div class="macro-grid">
+        <span>{{ 'nutrition.metrics.proteinShort' | translate }} <strong>{{ nutrition.todayTotals().proteinG }}g</strong></span>
+        <span>{{ 'nutrition.metrics.carbsShort' | translate }} <strong>{{ nutrition.todayTotals().carbsG }}g</strong></span>
+        <span>{{ 'nutrition.metrics.fatShort' | translate }} <strong>{{ nutrition.todayTotals().fatG }}g</strong></span>
+        <span>{{ 'nutrition.metrics.fiberShort' | translate }} <strong>{{ nutrition.todayTotals().fiberG }}g</strong></span>
+      </div>
+    </mat-card>
+  </section>
+
+  <mat-card appearance="outlined" class="entries-card">
+    <header>
+      <h2>{{ 'nutrition.log.entriesTitle' | translate }}</h2>
+      <span>{{ nutrition.foodLog().length }} {{ 'nutrition.log.entriesCount' | translate }}</span>
+    </header>
+    <div class="entry-list">
+      @for (entry of nutrition.foodLog(); track entry.id) {
+        <article class="entry-row">
+          <span class="meal-pill">{{ ('nutrition.meals.' + entry.meal) | translate }}</span>
+          <div>
+            <strong>{{ entry.foodKey | translate }}</strong>
+            <small>{{ entry.portionKey | translate }} - {{ entry.loggedAt | date: 'shortTime' }}</small>
+          </div>
+          <span>{{ entry.calories }} {{ 'nutrition.units.kcal' | translate }}</span>
+        </article>
+      }
+    </div>
+  </mat-card>
+</section>

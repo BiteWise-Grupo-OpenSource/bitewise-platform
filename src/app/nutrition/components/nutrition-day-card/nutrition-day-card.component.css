@@ -1,0 +1,104 @@
+.day-card {
+  border-color: var(--bw-border);
+  background: var(--bw-surface);
+  border-radius: 8px;
+  min-height: 100%;
+}
+
+.day-card.completed {
+  background: linear-gradient(180deg, var(--bw-surface), color-mix(in srgb, var(--bw-success) 8%, var(--bw-surface)));
+}
+
+.day-head,
+.calorie-row,
+.meal-item,
+.macro-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.day-head {
+  margin-bottom: 16px;
+}
+
+.day-head h3 {
+  margin: 4px 0 0;
+  font-family: var(--bw-display-font);
+  font-size: 1.25rem;
+  letter-spacing: 0;
+}
+
+.eyebrow {
+  color: var(--bw-patient);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.calorie-row {
+  color: var(--bw-muted);
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.calorie-row strong {
+  color: var(--bw-ink);
+}
+
+.macro-strip {
+  flex-wrap: wrap;
+  margin: 14px 0;
+}
+
+.macro-strip span {
+  background: var(--bw-surface-muted);
+  border-radius: 999px;
+  color: var(--bw-muted);
+  font-size: 0.8rem;
+  padding: 6px 10px;
+}
+
+.meal-list {
+  display: grid;
+  gap: 10px;
+}
+
+.meal-item {
+  border-top: 1px solid var(--bw-border);
+  padding-top: 10px;
+}
+
+.meal-kind {
+  border-radius: 999px;
+  background: var(--bw-patient-soft);
+  color: var(--bw-patient);
+  font-size: 0.74rem;
+  font-weight: 800;
+  min-width: 74px;
+  padding: 6px 8px;
+  text-align: center;
+}
+
+.meal-item div {
+  flex: 1;
+  min-width: 0;
+}
+
+.meal-item strong,
+.meal-item small {
+  display: block;
+}
+
+.meal-item small {
+  color: var(--bw-muted);
+}
+
+@media (max-width: 620px) {
+  .meal-item {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

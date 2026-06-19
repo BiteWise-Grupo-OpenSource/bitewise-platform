@@ -16,42 +16,18 @@ export const patientRoutes: Routes = [
       },
       {
         path: 'plan',
-        data: {
-          patientPage: {
-            eyebrowKey: 'patient.plan.eyebrow',
-            titleKey: 'patient.plan.title',
-            subtitleKey: 'patient.plan.subtitle',
-            primaryKey: 'patient.plan.primary'
-          }
-        },
         loadComponent: () =>
-          import('./pages/placeholder/patient-placeholder.page').then((m) => m.PatientPlaceholderPage)
+          import('../nutrition/pages/patient-plan/patient-plan.page').then((m) => m.PatientPlanPage)
       },
       {
         path: 'log',
-        data: {
-          patientPage: {
-            eyebrowKey: 'patient.log.eyebrow',
-            titleKey: 'patient.log.title',
-            subtitleKey: 'patient.log.subtitle',
-            primaryKey: 'patient.log.primary'
-          }
-        },
         loadComponent: () =>
-          import('./pages/placeholder/patient-placeholder.page').then((m) => m.PatientPlaceholderPage)
+          import('../nutrition/pages/patient-log/patient-log.page').then((m) => m.PatientLogPage)
       },
       {
         path: 'recipes',
-        data: {
-          patientPage: {
-            eyebrowKey: 'patient.recipes.eyebrow',
-            titleKey: 'patient.recipes.title',
-            subtitleKey: 'patient.recipes.subtitle',
-            primaryKey: 'patient.recipes.primary'
-          }
-        },
         loadComponent: () =>
-          import('./pages/placeholder/patient-placeholder.page').then((m) => m.PatientPlaceholderPage)
+          import('../nutrition/pages/patient-recipes/patient-recipes.page').then((m) => m.PatientRecipesPage)
       },
       {
         path: 'progress',
@@ -68,16 +44,8 @@ export const patientRoutes: Routes = [
       },
       {
         path: 'messages',
-        data: {
-          patientPage: {
-            eyebrowKey: 'patient.messages.eyebrow',
-            titleKey: 'patient.messages.title',
-            subtitleKey: 'patient.messages.subtitle',
-            primaryKey: 'patient.messages.primary'
-          }
-        },
         loadComponent: () =>
-          import('./pages/placeholder/patient-placeholder.page').then((m) => m.PatientPlaceholderPage)
+          import('../communication/pages/patient-messages/patient-messages.page').then((m) => m.PatientMessagesPage)
       },
       {
         path: 'settings',

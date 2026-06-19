@@ -1,0 +1,20 @@
+<mat-card appearance="outlined" class="recipe-card">
+  <div class="recipe-kcal">
+    <strong>{{ recipe().calories }}</strong>
+    <span>{{ 'nutrition.units.kcal' | translate }}</span>
+  </div>
+  <h3>{{ recipe().titleKey | translate }}</h3>
+  <p>{{ recipe().summaryKey | translate }}</p>
+
+  <div class="recipe-meta">
+    <span>{{ recipe().prepMinutes }} {{ 'nutrition.units.minutes' | translate }}</span>
+    <span>{{ ('nutrition.difficulty.' + recipe().difficulty) | translate }}</span>
+    <span>{{ ('nutrition.goals.' + recipe().goal) | translate }}</span>
+  </div>
+
+  <mat-chip-set [attr.aria-label]="'nutrition.recipes.tagsLabel' | translate">
+    @for (tagKey of recipe().tagKeys; track tagKey) {
+      <mat-chip>{{ tagKey | translate }}</mat-chip>
+    }
+  </mat-chip-set>
+</mat-card>

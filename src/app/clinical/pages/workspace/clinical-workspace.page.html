@@ -93,12 +93,12 @@
         <mat-card appearance="outlined" class="placeholder-card">
           <h3>{{ 'clinical.placeholders.nutritionTitle' | translate }}</h3>
           <p>{{ 'clinical.placeholders.nutritionDesc' | translate }}</p>
-          <span class="badge">{{ 'clinical.placeholders.comingSoon' | translate }}</span>
+          <a mat-stroked-button routerLink="/clinical/nutrition">{{ 'clinical.detail.openPlan' | translate }}</a>
         </mat-card>
         <mat-card appearance="outlined" class="placeholder-card">
           <h3>{{ 'clinical.placeholders.communicationTitle' | translate }}</h3>
           <p>{{ 'clinical.placeholders.communicationDesc' | translate }}</p>
-          <span class="badge">{{ 'clinical.placeholders.comingSoon' | translate }}</span>
+          <a mat-stroked-button routerLink="/clinical/messages">{{ 'clinical.detail.message' | translate }}</a>
         </mat-card>
       </div>
     </section>

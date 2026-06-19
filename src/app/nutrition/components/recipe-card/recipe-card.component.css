@@ -1,0 +1,50 @@
+.recipe-card {
+  background: var(--bw-surface);
+  border-color: var(--bw-border);
+  border-radius: 8px;
+  min-height: 100%;
+  position: relative;
+}
+
+.recipe-kcal {
+  align-items: center;
+  background: var(--bw-patient-soft);
+  border-radius: 8px;
+  color: var(--bw-patient);
+  display: inline-flex;
+  gap: 6px;
+  padding: 8px 10px;
+}
+
+.recipe-kcal strong {
+  font-family: var(--bw-display-font);
+  font-size: 1.25rem;
+}
+
+h3 {
+  font-family: var(--bw-display-font);
+  font-size: 1.45rem;
+  letter-spacing: 0;
+  margin: 18px 0 8px;
+}
+
+p {
+  color: var(--bw-muted);
+  line-height: 1.55;
+  margin: 0 0 16px;
+}
+
+.recipe-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.recipe-meta span {
+  border: 1px solid var(--bw-border);
+  border-radius: 999px;
+  color: var(--bw-muted);
+  font-size: 0.82rem;
+  padding: 6px 10px;
+}

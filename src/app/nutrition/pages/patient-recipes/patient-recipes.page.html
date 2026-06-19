@@ -1,0 +1,28 @@
+<section class="recipes-page">
+  <header class="page-hero">
+    <div>
+      <span class="eyebrow">{{ 'nutrition.recipes.eyebrow' | translate }}</span>
+      <h1>{{ 'nutrition.recipes.title' | translate }}</h1>
+      <p>{{ 'nutrition.recipes.subtitle' | translate }}</p>
+    </div>
+  </header>
+
+  <mat-button-toggle-group
+    class="filter-group"
+    [value]="nutrition.selectedRecipeGoal()"
+    [attr.aria-label]="'nutrition.recipes.filterLabel' | translate"
+    (valueChange)="applyFilter($event)"
+  >
+    @for (filter of filters; track filter) {
+      <mat-button-toggle [value]="filter">
+        {{ (filter === 'all' ? 'nutrition.recipes.all' : 'nutrition.goals.' + filter) | translate }}
+      </mat-button-toggle>
+    }
+  </mat-button-toggle-group>
+
+  <section class="recipe-grid">
+    @for (recipe of nutrition.recipes(); track recipe.id) {
+      <app-recipe-card [recipe]="recipe" />
+    }
+  </section>
+</section>
