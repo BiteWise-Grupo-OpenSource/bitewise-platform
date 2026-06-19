@@ -1,0 +1,17 @@
+<form class="composer" (ngSubmit)="submit()">
+  <mat-form-field appearance="outline" class="composer-field">
+    <mat-label>{{ 'communication.composer.label' | translate }}</mat-label>
+    <input
+      matInput
+      name="message"
+      autocomplete="off"
+      [ngModel]="draft()"
+      (ngModelChange)="updateDraft($event)"
+      [disabled]="disabled()"
+      [placeholder]="'communication.composer.placeholder' | translate"
+    />
+  </mat-form-field>
+  <button type="submit" mat-flat-button class="send" [disabled]="disabled() || !draft().trim()">
+    {{ 'communication.composer.send' | translate }}
+  </button>
+</form>

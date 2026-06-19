@@ -1,0 +1,50 @@
+<div class="messages-workspace">
+  <mat-toolbar class="topbar">
+    <a class="brand" routerLink="/clinical">{{ 'app.brand' | translate }}</a>
+    <span class="brand-tag">{{ 'communication.nutritionist.tag' | translate }}</span>
+    <span class="spacer"></span>
+    <app-language-switcher />
+    <a mat-stroked-button routerLink="/clinical">{{ 'communication.nutritionist.back' | translate }}</a>
+    <button type="button" mat-stroked-button (click)="logout()">{{ 'communication.nutritionist.logout' | translate }}</button>
+  </mat-toolbar>
+
+  <main class="content">
+    <header class="hero">
+      <p class="eyebrow">{{ 'communication.nutritionist.eyebrow' | translate }}</p>
+      <h1>{{ 'communication.nutritionist.title' | translate }}</h1>
+      <p class="subtitle">{{ 'communication.nutritionist.subtitle' | translate }}</p>
+    </header>
+
+    <div class="layout">
+      <mat-card appearance="outlined" class="inbox-card" aria-labelledby="inbox-title">
+        <header class="inbox-head">
+          <h2 id="inbox-title">{{ 'communication.inbox.title' | translate }}</h2>
+          <span class="awaiting" [attr.aria-label]="'communication.inbox.awaitingCount' | translate">
+            {{ communication.awaitingCount() }}
+          </span>
+        </header>
+        <app-conversation-list
+          [conversations]="communication.previews()"
+          [selectedId]="communication.selectedConversationId()"
+          (select)="select($event)"
+        />
+      </mat-card>
+
+      <mat-card appearance="outlined" class="conversation-card">
+        @if (selected(); as conversation) {
+          <header class="conversation-head">
+            <h2>{{ conversation.patientName }}</h2>
+            <p>{{ 'communication.nutritionist.conversationWith' | translate: { name: conversation.patientName } }}</p>
+          </header>
+          <app-conversation-thread [messages]="messages()" viewer="nutritionist" />
+          <app-message-composer (send)="send($event)" />
+        } @else {
+          <div class="empty">
+            <h2>{{ 'communication.nutritionist.emptyTitle' | translate }}</h2>
+            <p>{{ 'communication.nutritionist.emptySubtitle' | translate }}</p>
+          </div>
+        }
+      </mat-card>
+    </div>
+  </main>
+</div>

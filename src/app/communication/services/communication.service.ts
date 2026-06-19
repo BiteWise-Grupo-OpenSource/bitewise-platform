@@ -1,177 +1,128 @@
 import { computed, Injectable, signal } from '@angular/core';
-import { Conversation, Message, MessageAuthorRole } from '../model/communication.models';
+import {
+  Conversation,
+  ConversationMessage,
+  ConversationPreview,
+  MessageAuthor
+} from '../model/communication.models';
 
+/**
+ * In-memory mock backend for the communication bounded context.
+ *
+ * Conversations live in a signal so both the patient view and the professional
+ * inbox react to locally sent messages without a real backend or persistence.
+ * Seeded messages use i18n keys (`bodyKey`); locally sent messages keep the raw
+ * typed text (`body`).
+ */
 @Injectable({ providedIn: 'root' })
 export class CommunicationService {
+  private static readonly NUTRITIONIST = 'Dr. Carlos Medina';
+  private sequence = 0;
+
   private readonly conversationsData = signal<Conversation[]>([
     {
-      id: 'conv-andrea',
+      id: 'c-001',
       patientId: 'p-001',
-      nutritionistId: 'nutritionist-demo',
-      subjectKey: 'communication.subjects.weekPlan',
-      unreadByPatient: 1,
-      unreadByNutritionist: 0,
-      participants: [
-        { id: 'p-001', displayName: 'Andrea Flores', role: 'patient' },
-        { id: 'nutritionist-demo', displayName: 'Dr. Carlos Medina', role: 'nutritionist' }
-      ],
+      patientName: 'Andrea Flores',
+      patientEmail: 'andrea@email.com',
+      nutritionistName: CommunicationService.NUTRITIONIST,
       messages: [
-        {
-          id: 'msg-001',
-          authorId: 'p-001',
-          authorRole: 'patient',
-          bodyKey: 'communication.samples.andreaQuestion',
-          sentAt: '2026-06-18T09:20:00',
-          status: 'read'
-        },
-        {
-          id: 'msg-002',
-          authorId: 'nutritionist-demo',
-          authorRole: 'nutritionist',
-          bodyKey: 'communication.samples.carlosAnswer',
-          sentAt: '2026-06-18T10:05:00',
-          status: 'delivered'
-        },
-        {
-          id: 'msg-003',
-          authorId: 'nutritionist-demo',
-          authorRole: 'nutritionist',
-          bodyKey: 'communication.samples.carlosReminder',
-          sentAt: '2026-06-19T08:30:00',
-          status: 'delivered'
-        }
+        { id: 'c001-m1', author: 'nutritionist', sentAt: '2026-06-15T09:00:00', bodyKey: 'communication.samples.welcome' },
+        { id: 'c001-m2', author: 'patient', sentAt: '2026-06-17T10:15:00', bodyKey: 'communication.samples.planQuestion' },
+        { id: 'c001-m3', author: 'nutritionist', sentAt: '2026-06-17T10:20:00', bodyKey: 'communication.samples.planAnswer' },
+        { id: 'c001-m4', author: 'patient', sentAt: '2026-06-18T08:30:00', bodyKey: 'communication.samples.snackSwap' }
       ]
     },
     {
-      id: 'conv-marco',
+      id: 'c-002',
       patientId: 'p-002',
-      nutritionistId: 'nutritionist-demo',
-      subjectKey: 'communication.subjects.appointment',
-      unreadByPatient: 0,
-      unreadByNutritionist: 2,
-      participants: [
-        { id: 'p-002', displayName: 'Marco Rios', role: 'patient' },
-        { id: 'nutritionist-demo', displayName: 'Dr. Carlos Medina', role: 'nutritionist' }
-      ],
+      patientName: 'Marco Rios',
+      patientEmail: 'marco@email.com',
+      nutritionistName: CommunicationService.NUTRITIONIST,
       messages: [
-        {
-          id: 'msg-004',
-          authorId: 'p-002',
-          authorRole: 'patient',
-          bodyKey: 'communication.samples.marcoReschedule',
-          sentAt: '2026-06-18T11:12:00',
-          status: 'delivered'
-        },
-        {
-          id: 'msg-005',
-          authorId: 'p-002',
-          authorRole: 'patient',
-          bodyKey: 'communication.samples.marcoFollowup',
-          sentAt: '2026-06-18T16:40:00',
-          status: 'delivered'
-        }
+        { id: 'c002-m1', author: 'nutritionist', sentAt: '2026-06-16T11:00:00', bodyKey: 'communication.samples.checkIn' },
+        { id: 'c002-m2', author: 'patient', sentAt: '2026-06-16T18:45:00', bodyKey: 'communication.samples.progressUpdate' },
+        { id: 'c002-m3', author: 'nutritionist', sentAt: '2026-06-17T09:10:00', bodyKey: 'communication.samples.labReminder' }
       ]
     },
     {
-      id: 'conv-lucia',
+      id: 'c-003',
       patientId: 'p-003',
-      nutritionistId: 'nutritionist-demo',
-      subjectKey: 'communication.subjects.training',
-      unreadByPatient: 0,
-      unreadByNutritionist: 1,
-      participants: [
-        { id: 'p-003', displayName: 'Lucia Mendez', role: 'patient' },
-        { id: 'nutritionist-demo', displayName: 'Dr. Carlos Medina', role: 'nutritionist' }
-      ],
+      patientName: 'Lucia Mendez',
+      patientEmail: 'lucia@email.com',
+      nutritionistName: CommunicationService.NUTRITIONIST,
       messages: [
-        {
-          id: 'msg-006',
-          authorId: 'p-003',
-          authorRole: 'patient',
-          bodyKey: 'communication.samples.luciaSnack',
-          sentAt: '2026-06-19T07:58:00',
-          status: 'delivered'
-        }
+        { id: 'c003-m1', author: 'patient', sentAt: '2026-06-18T07:50:00', bodyKey: 'communication.samples.scheduleAsk' }
+      ]
+    },
+    {
+      id: 'c-004',
+      patientId: 'p-004',
+      patientName: 'Diego Salas',
+      patientEmail: 'diego@email.com',
+      nutritionistName: CommunicationService.NUTRITIONIST,
+      messages: [
+        { id: 'c004-m1', author: 'nutritionist', sentAt: '2026-06-10T09:00:00', bodyKey: 'communication.samples.welcome' },
+        { id: 'c004-m2', author: 'patient', sentAt: '2026-06-12T12:00:00', bodyKey: 'communication.samples.thanks' },
+        { id: 'c004-m3', author: 'nutritionist', sentAt: '2026-06-17T15:00:00', bodyKey: 'communication.samples.checkIn' }
       ]
     }
   ]);
-  private readonly selectedId = signal('conv-andrea');
+
+  private readonly selectedId = signal<string | null>('c-001');
 
   readonly conversations = this.conversationsData.asReadonly();
   readonly selectedConversationId = this.selectedId.asReadonly();
-  readonly patientConversation = computed(() =>
-    this.conversationsData().find((conversation) => conversation.patientId === 'p-001') ?? null
-  );
-  readonly selectedConversation = computed(() => {
-    const selectedId = this.selectedId();
-    return this.conversationsData().find((conversation) => conversation.id === selectedId) ?? this.conversationsData()[0] ?? null;
+
+  readonly selectedConversation = computed<Conversation | null>(() => {
+    const id = this.selectedId();
+    return this.conversationsData().find((conversation) => conversation.id === id) ?? null;
   });
-  readonly unreadForPatient = computed(() =>
-    this.conversationsData().reduce((total, conversation) => total + conversation.unreadByPatient, 0)
-  );
-  readonly unreadForNutritionist = computed(() =>
-    this.conversationsData().reduce((total, conversation) => total + conversation.unreadByNutritionist, 0)
+
+  readonly previews = computed<ConversationPreview[]>(() =>
+    this.conversationsData().map((conversation) => {
+      const lastMessage = conversation.messages.at(-1) ?? null;
+      return {
+        id: conversation.id,
+        patientName: conversation.patientName,
+        lastMessage,
+        awaitingReply: lastMessage?.author === 'patient'
+      };
+    })
   );
 
-  selectConversation(conversationId: string, viewerRole: MessageAuthorRole): void {
+  readonly awaitingCount = computed(() => this.previews().filter((preview) => preview.awaitingReply).length);
+
+  selectConversation(conversationId: string): void {
     this.selectedId.set(conversationId);
-    this.markRead(conversationId, viewerRole);
   }
 
-  sendMessage(conversationId: string, authorRole: MessageAuthorRole, body: string): void {
-    const trimmed = body.trim();
+  /** Resolves the conversation that belongs to a given patient email (patient view). */
+  conversationForEmail(email: string): Conversation | null {
+    const normalized = email.trim().toLowerCase();
+    return this.conversationsData().find((conversation) => conversation.patientEmail.toLowerCase() === normalized) ?? null;
+  }
 
-    if (!trimmed) {
+  /** Appends a locally typed (mock) message to a conversation. */
+  sendMessage(conversationId: string, author: MessageAuthor, body: string): void {
+    const text = body.trim();
+    if (!text) {
       return;
     }
 
+    const message: ConversationMessage = {
+      id: `local-${++this.sequence}`,
+      author,
+      sentAt: new Date().toISOString(),
+      body: text
+    };
+
     this.conversationsData.update((conversations) =>
-      conversations.map((conversation) => {
-        if (conversation.id !== conversationId) {
-          return conversation;
-        }
-
-        const author = conversation.participants.find((participant) => participant.role === authorRole);
-        const message: Message = {
-          id: `msg-${Date.now()}`,
-          authorId: author?.id ?? authorRole,
-          authorRole,
-          body: trimmed,
-          sentAt: new Date().toISOString(),
-          status: 'sent'
-        };
-
-        return {
-          ...conversation,
-          unreadByPatient: authorRole === 'nutritionist' ? conversation.unreadByPatient + 1 : conversation.unreadByPatient,
-          unreadByNutritionist: authorRole === 'patient' ? conversation.unreadByNutritionist + 1 : conversation.unreadByNutritionist,
-          messages: [...conversation.messages, message]
-        };
-      })
-    );
-  }
-
-  participantName(conversation: Conversation, role: MessageAuthorRole): string {
-    return conversation.participants.find((participant) => participant.role === role)?.displayName ?? '';
-  }
-
-  preview(conversation: Conversation): Message | null {
-    return conversation.messages.at(-1) ?? null;
-  }
-
-  private markRead(conversationId: string, viewerRole: MessageAuthorRole): void {
-    this.conversationsData.update((conversations) =>
-      conversations.map((conversation) => {
-        if (conversation.id !== conversationId) {
-          return conversation;
-        }
-
-        return {
-          ...conversation,
-          unreadByPatient: viewerRole === 'patient' ? 0 : conversation.unreadByPatient,
-          unreadByNutritionist: viewerRole === 'nutritionist' ? 0 : conversation.unreadByNutritionist
-        };
-      })
+      conversations.map((conversation) =>
+        conversation.id === conversationId
+          ? { ...conversation, messages: [...conversation.messages, message] }
+          : conversation
+      )
     );
   }
 }

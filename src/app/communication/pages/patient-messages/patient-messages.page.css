@@ -1,83 +1,62 @@
-.messages-page {
-  display: grid;
-  gap: 22px;
-}
-
-.page-hero,
-.conversation-card {
-  background: var(--bw-surface);
-  border-color: var(--bw-border);
-  border-radius: 8px;
-}
-
-.page-hero {
-  border: 1px solid var(--bw-border);
-  padding: clamp(20px, 4vw, 34px);
-}
-
-.page-hero h1,
-.conversation-head h2 {
-  font-family: var(--bw-display-font);
-  letter-spacing: 0;
-  margin: 6px 0 10px;
-}
-
-.page-hero h1 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-}
-
-.page-hero p {
-  color: var(--bw-muted);
-  line-height: 1.55;
-  margin: 0;
-}
-
-.eyebrow {
-  color: var(--bw-patient);
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0;
-  text-transform: uppercase;
-}
-
-.conversation-card {
+.patient-messages {
+  --composer-accent: var(--bw-patient);
   display: grid;
   gap: 18px;
+  max-width: 880px;
 }
 
-.conversation-head {
-  align-items: flex-start;
-  display: flex;
-  justify-content: space-between;
-  gap: 14px;
-}
-
-.unread {
-  background: var(--bw-patient-soft);
-  border-radius: 999px;
+.messages-header .eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.74rem;
+  font-weight: 600;
   color: var(--bw-patient);
-  font-weight: 800;
-  padding: 8px 12px;
 }
 
-.composer {
-  align-items: flex-start;
-  border-top: 1px solid var(--bw-border);
-  display: grid;
+.messages-header h1 {
+  margin: 4px 0 2px;
+  font-family: var(--bw-display-font);
+  font-size: 1.5rem;
+  color: var(--bw-ink);
+}
+
+.messages-header .with {
+  margin: 0;
+  color: var(--bw-muted);
+}
+
+.messages-card {
+  display: flex;
+  flex-direction: column;
   gap: 12px;
-  padding-top: 18px;
+  padding: 16px 18px;
+  background: var(--bw-surface);
+  border-color: var(--bw-border);
 }
 
-.composer button {
-  justify-self: end;
+.messages-empty {
+  padding: 24px;
+  background: var(--bw-surface);
+  border-color: var(--bw-border);
 }
 
-@media (max-width: 640px) {
-  .conversation-head {
-    flex-direction: column;
-  }
+.messages-empty .eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--bw-patient);
+}
 
-  .composer button {
-    justify-self: stretch;
-  }
+.messages-empty h1 {
+  margin: 4px 0 6px;
+  font-family: var(--bw-display-font);
+  font-size: 1.4rem;
+}
+
+.messages-empty p {
+  margin: 0;
+  color: var(--bw-muted);
 }

@@ -1,0 +1,139 @@
+.messages-workspace {
+  --composer-accent: var(--bw-nutritionist);
+  min-height: 100vh;
+  background: var(--bw-bg);
+  color: var(--bw-ink);
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bw-surface);
+  color: var(--bw-ink);
+  border-bottom: 1px solid var(--bw-border);
+}
+
+.topbar .brand {
+  font-family: var(--bw-display-font);
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+.topbar .brand-tag {
+  font-size: 0.78rem;
+  color: var(--bw-nutritionist);
+  background: var(--bw-nutritionist-soft);
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.content {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 24px 20px 56px;
+  display: grid;
+  gap: 22px;
+}
+
+.hero .eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--bw-nutritionist);
+}
+
+.hero h1 {
+  margin: 6px 0 4px;
+  font-family: var(--bw-display-font);
+  font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2rem);
+}
+
+.hero .subtitle {
+  margin: 0;
+  max-width: 60ch;
+  color: var(--bw-muted);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.inbox-card,
+.conversation-card {
+  padding: 16px 18px;
+  background: var(--bw-surface);
+  border-color: var(--bw-border);
+}
+
+.inbox-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.inbox-head h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.awaiting {
+  background: var(--bw-nutritionist-soft);
+  color: var(--bw-nutritionist);
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 2px 12px;
+  font-size: 0.9rem;
+}
+
+.conversation-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 360px;
+}
+
+.conversation-head h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--bw-ink);
+}
+
+.conversation-head p {
+  margin: 2px 0 0;
+  font-size: 0.85rem;
+  color: var(--bw-muted);
+}
+
+.conversation-card .empty {
+  margin: auto;
+  text-align: center;
+  color: var(--bw-muted);
+  padding: 32px 8px;
+}
+
+.conversation-card .empty h2 {
+  margin: 0 0 6px;
+  color: var(--bw-ink);
+  font-size: 1.15rem;
+}
+
+@media (max-width: 880px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}

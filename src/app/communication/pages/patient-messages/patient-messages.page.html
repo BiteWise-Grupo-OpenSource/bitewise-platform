@@ -1,38 +1,20 @@
-<section class="messages-page">
-  <header class="page-hero">
-    <div>
-      <span class="eyebrow">{{ 'communication.patient.eyebrow' | translate }}</span>
+<section class="patient-messages">
+  @if (conversation(); as conversation) {
+    <header class="messages-header">
+      <p class="eyebrow">{{ 'communication.patient.eyebrow' | translate }}</p>
       <h1>{{ 'communication.patient.title' | translate }}</h1>
-      <p>{{ 'communication.patient.subtitle' | translate }}</p>
-    </div>
-  </header>
+      <p class="with">{{ 'communication.patient.with' | translate: { name: conversation.nutritionistName } }}</p>
+    </header>
 
-  @if (communication.patientConversation(); as conversation) {
-    <mat-card appearance="outlined" class="conversation-card">
-      <header class="conversation-head">
-        <div>
-          <span class="eyebrow">{{ conversation.subjectKey | translate }}</span>
-          <h2>{{ communication.participantName(conversation, 'nutritionist') }}</h2>
-        </div>
-        <span class="unread">{{ communication.unreadForPatient() }} {{ 'communication.inbox.unread' | translate }}</span>
-      </header>
-
-      <app-conversation-thread [conversation]="conversation" viewerRole="patient" />
-
-      <form class="composer" (ngSubmit)="send(conversation.id)">
-        <mat-form-field appearance="outline">
-          <mat-label>{{ 'communication.composer.label' | translate }}</mat-label>
-          <textarea
-            matInput
-            rows="3"
-            [placeholder]="'communication.composer.placeholder' | translate"
-            [ngModel]="draft()"
-            (ngModelChange)="draft.set($event)"
-            name="message"
-          ></textarea>
-        </mat-form-field>
-        <button type="submit" mat-flat-button color="primary">{{ 'communication.composer.send' | translate }}</button>
-      </form>
+    <mat-card appearance="outlined" class="messages-card">
+      <app-conversation-thread [messages]="messages()" viewer="patient" />
+      <app-message-composer (send)="send($event)" />
+    </mat-card>
+  } @else {
+    <mat-card appearance="outlined" class="messages-empty">
+      <p class="eyebrow">{{ 'communication.patient.eyebrow' | translate }}</p>
+      <h1>{{ 'communication.patient.title' | translate }}</h1>
+      <p>{{ 'communication.patient.empty' | translate }}</p>
     </mat-card>
   }
 </section>

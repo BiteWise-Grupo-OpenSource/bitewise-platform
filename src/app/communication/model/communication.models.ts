@@ -1,29 +1,32 @@
-export type MessageAuthorRole = 'patient' | 'nutritionist';
-export type MessageStatus = 'sent' | 'delivered' | 'read';
+export type MessageAuthor = 'patient' | 'nutritionist';
 
-export interface ConversationParticipant {
+/** A single message inside a conversation. */
+export interface ConversationMessage {
   id: string;
-  displayName: string;
-  role: MessageAuthorRole;
-}
-
-export interface Message {
-  id: string;
-  authorId: string;
-  authorRole: MessageAuthorRole;
-  bodyKey?: string;
-  body?: string;
+  author: MessageAuthor;
+  /** ISO date-time string. */
   sentAt: string;
-  status: MessageStatus;
+  /** i18n key for seeded sample messages (`communication.samples.*`). */
+  bodyKey?: string;
+  /** Literal text for user-sent (local mock) messages. */
+  body?: string;
 }
 
+/** A patient <-> nutritionist conversation thread. */
 export interface Conversation {
   id: string;
   patientId: string;
-  nutritionistId: string;
-  participants: ConversationParticipant[];
-  subjectKey: string;
-  unreadByPatient: number;
-  unreadByNutritionist: number;
-  messages: Message[];
+  patientName: string;
+  patientEmail: string;
+  nutritionistName: string;
+  messages: ConversationMessage[];
+}
+
+/** Derived inbox row for the professional view. */
+export interface ConversationPreview {
+  id: string;
+  patientName: string;
+  lastMessage: ConversationMessage | null;
+  /** True when the last message was authored by the patient (awaiting reply). */
+  awaitingReply: boolean;
 }

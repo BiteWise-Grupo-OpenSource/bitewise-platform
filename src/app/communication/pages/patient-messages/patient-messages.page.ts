@@ -1,40 +1,32 @@
-import { Component, inject, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
+import { Component, computed, inject } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { TranslatePipe } from '@ngx-translate/core';
+import { AuthService } from '../../../iam/services/auth.service';
 import { ConversationThreadComponent } from '../../components/conversation-thread/conversation-thread.component';
+import { MessageComposerComponent } from '../../components/message-composer/message-composer.component';
 import { CommunicationService } from '../../services/communication.service';
 
 @Component({
   selector: 'app-patient-messages-page',
-  imports: [
-    ConversationThreadComponent,
-    FormsModule,
-    MatButtonModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    TranslatePipe
-  ],
+  imports: [MatCardModule, TranslatePipe, ConversationThreadComponent, MessageComposerComponent],
   templateUrl: './patient-messages.page.html',
   styleUrl: './patient-messages.page.css'
 })
 export class PatientMessagesPage {
-  readonly communication = inject(CommunicationService);
-  readonly draft = signal('');
+  private readonly auth = inject(AuthService);
+  private readonly communication = inject(CommunicationService);
 
-  constructor() {
-    const conversation = this.communication.patientConversation();
+  readonly conversation = computed(() => {
+    const email = this.auth.user()?.email;
+    return email ? this.communication.conversationForEmail(email) : null;
+  });
+
+  readonly messages = computed(() => this.conversation()?.messages ?? []);
+
+  send(text: string): void {
+    const conversation = this.conversation();
     if (conversation) {
-      this.communication.selectConversation(conversation.id, 'patient');
+      this.communication.sendMessage(conversation.id, 'patient', text);
     }
-  }
-
-  send(conversationId: string): void {
-    this.communication.sendMessage(conversationId, 'patient', this.draft());
-    this.draft.set('');
   }
 }

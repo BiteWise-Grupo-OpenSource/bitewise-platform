@@ -1,20 +1,17 @@
 import { DatePipe } from '@angular/common';
 import { Component, input } from '@angular/core';
-import { MatChipsModule } from '@angular/material/chips';
 import { TranslatePipe } from '@ngx-translate/core';
-import { Conversation, MessageAuthorRole } from '../../model/communication.models';
+import { ConversationMessage, MessageAuthor } from '../../model/communication.models';
 
 @Component({
   selector: 'app-conversation-thread',
-  imports: [DatePipe, MatChipsModule, TranslatePipe],
+  imports: [DatePipe, TranslatePipe],
   templateUrl: './conversation-thread.component.html',
   styleUrl: './conversation-thread.component.css'
 })
 export class ConversationThreadComponent {
-  readonly conversation = input.required<Conversation>();
-  readonly viewerRole = input.required<MessageAuthorRole>();
-
-  messageClass(authorRole: MessageAuthorRole): string {
-    return authorRole === this.viewerRole() ? 'own' : 'other';
-  }
+  readonly messages = input.required<ConversationMessage[]>();
+  /** Role looking at the thread; its own messages render as "mine". */
+  readonly viewer = input.required<MessageAuthor>();
+  readonly emptyKey = input<string>('communication.thread.empty');
 }

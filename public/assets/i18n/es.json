@@ -479,53 +479,51 @@
     }
   },
   "communication": {
-    "roles": {
-      "patient": "Paciente",
-      "nutritionist": "Nutricionista"
-    },
-    "status": {
-      "sent": "Enviado",
-      "delivered": "Entregado",
-      "read": "Leido"
-    },
-    "subjects": {
-      "weekPlan": "Consulta del plan semanal",
-      "appointment": "Cambio de cita",
-      "training": "Pregunta de entrenamiento"
-    },
-    "samples": {
-      "andreaQuestion": "Puedo cambiar el snack de la tarde por fruta en dias de entrenamiento?",
-      "carlosAnswer": "Si. Elige fruta con yogurt griego para mantener el objetivo de proteina.",
-      "carlosReminder": "Recuerda registrar la cena de hoy para que pueda revisar los totales del viernes.",
-      "marcoReschedule": "Podriamos mover nuestra proxima cita a la tarde?",
-      "marcoFollowup": "Tambien subi mis ultimas notas de glucosa para revision.",
-      "luciaSnack": "Deberia agregar un segundo snack despues del entrenamiento de fuerza?"
-    },
-    "thread": {
-      "label": "Hilo de conversacion"
+    "access": {
+      "open": "Abrir mensajes",
+      "openInbox": "Abrir bandeja"
     },
     "patient": {
-      "eyebrow": "Mensajes seguros",
-      "title": "Mensajes",
-      "subtitle": "Haz preguntas a tu nutricionista asignado sobre tu plan, comidas y progreso semanal."
+      "eyebrow": "Mensajes",
+      "title": "Tu conversacion",
+      "with": "Con {{name}}",
+      "empty": "Aun no tienes mensajes."
     },
-    "professional": {
-      "eyebrow": "Comunicacion con pacientes",
-      "title": "Inbox",
-      "subtitle": "Revisa conversaciones de pacientes, controla mensajes sin leer y envia respuestas mock locales.",
-      "back": "Volver al espacio"
+    "nutritionist": {
+      "tag": "Mensajeria",
+      "eyebrow": "Mensajeria con pacientes",
+      "title": "Conversaciones",
+      "subtitle": "Responde a tus pacientes desde una sola bandeja.",
+      "back": "Volver al panel",
+      "logout": "Cerrar sesion",
+      "conversationWith": "Conversacion con {{name}}",
+      "emptyTitle": "Sin conversacion seleccionada",
+      "emptySubtitle": "Elige un paciente de la bandeja para leer y responder."
     },
     "inbox": {
-      "title": "Conversaciones",
-      "unread": "sin leer"
+      "title": "Bandeja",
+      "awaiting": "Esperando respuesta",
+      "awaitingCount": "Conversaciones esperando respuesta",
+      "noMessages": "Aun sin mensajes"
+    },
+    "thread": {
+      "empty": "Aun no hay mensajes en esta conversacion."
     },
     "composer": {
       "label": "Mensaje",
-      "placeholder": "Escribe una pregunta para tu nutricionista",
-      "send": "Enviar mensaje",
-      "professionalLabel": "Respuesta",
-      "professionalPlaceholder": "Escribe una respuesta para el paciente",
-      "reply": "Enviar respuesta"
+      "placeholder": "Escribe un mensaje",
+      "send": "Enviar"
+    },
+    "samples": {
+      "welcome": "Te damos la bienvenida a BiteWise! Sere tu nutricionista.",
+      "planQuestion": "Hola! Tengo una pregunta sobre el plan de esta semana.",
+      "planAnswer": "Hola! Claro, dime.",
+      "snackSwap": "Puedo cambiar la merienda de la tarde por fruta?",
+      "thanks": "Perfecto, gracias!",
+      "checkIn": "Como te fue con las comidas esta semana?",
+      "progressUpdate": "Bastante bien, cumpli el objetivo de calorias casi todos los dias.",
+      "labReminder": "Recuerda enviar tus ultimos analisis antes de la cita.",
+      "scheduleAsk": "Podriamos mover la proxima cita al viernes?"
     }
   }
 }

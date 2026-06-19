@@ -479,53 +479,51 @@
     }
   },
   "communication": {
-    "roles": {
-      "patient": "Patient",
-      "nutritionist": "Nutritionist"
-    },
-    "status": {
-      "sent": "Sent",
-      "delivered": "Delivered",
-      "read": "Read"
-    },
-    "subjects": {
-      "weekPlan": "Weekly plan check-in",
-      "appointment": "Appointment change",
-      "training": "Training day question"
-    },
-    "samples": {
-      "andreaQuestion": "Can I swap the afternoon snack for fruit on training days?",
-      "carlosAnswer": "Yes. Choose fruit with Greek yogurt so the protein target stays on track.",
-      "carlosReminder": "Remember to log dinner today so I can review the Friday totals.",
-      "marcoReschedule": "Could we move our next appointment to the afternoon?",
-      "marcoFollowup": "I also uploaded my latest glucose notes for review.",
-      "luciaSnack": "Should I add a second snack after strength training?"
-    },
-    "thread": {
-      "label": "Conversation thread"
+    "access": {
+      "open": "Open messages",
+      "openInbox": "Open inbox"
     },
     "patient": {
-      "eyebrow": "Secure messages",
-      "title": "Messages",
-      "subtitle": "Ask your assigned nutritionist questions about your plan, meals, and weekly progress."
+      "eyebrow": "Messages",
+      "title": "Your conversation",
+      "with": "With {{name}}",
+      "empty": "You don't have any messages yet."
     },
-    "professional": {
-      "eyebrow": "Patient communication",
-      "title": "Inbox",
-      "subtitle": "Review patient conversations, track unread messages, and send local mock replies.",
-      "back": "Back to workspace"
+    "nutritionist": {
+      "tag": "Messaging",
+      "eyebrow": "Patient messaging",
+      "title": "Conversations",
+      "subtitle": "Reply to your patients from a single inbox.",
+      "back": "Back to workspace",
+      "logout": "Sign out",
+      "conversationWith": "Conversation with {{name}}",
+      "emptyTitle": "No conversation selected",
+      "emptySubtitle": "Pick a patient from the inbox to read and reply."
     },
     "inbox": {
-      "title": "Conversations",
-      "unread": "unread"
+      "title": "Inbox",
+      "awaiting": "Awaiting reply",
+      "awaitingCount": "Conversations awaiting reply",
+      "noMessages": "No messages yet"
+    },
+    "thread": {
+      "empty": "No messages in this conversation yet."
     },
     "composer": {
       "label": "Message",
-      "placeholder": "Write a question for your nutritionist",
-      "send": "Send message",
-      "professionalLabel": "Reply",
-      "professionalPlaceholder": "Write a reply to the patient",
-      "reply": "Send reply"
+      "placeholder": "Write a message",
+      "send": "Send"
+    },
+    "samples": {
+      "welcome": "Welcome to BiteWise! I'll be your nutritionist.",
+      "planQuestion": "Hi! I have a question about this week's plan.",
+      "planAnswer": "Hello! Of course, go ahead.",
+      "snackSwap": "Can I swap the afternoon snack for fruit?",
+      "thanks": "Perfect, thank you!",
+      "checkIn": "How did your meals go this week?",
+      "progressUpdate": "Pretty well, I kept the calorie target most days.",
+      "labReminder": "Remember to send your latest lab results before our visit.",
+      "scheduleAsk": "Could we move our next appointment to Friday?"
     }
   }
 }
