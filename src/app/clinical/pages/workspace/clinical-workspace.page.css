@@ -237,3 +237,20 @@
     grid-template-columns: 1fr;
   }
 }
+
+.panel-head.with-action {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.access-card {
+  border-style: solid;
+}
+
+.access-button {
+  margin-top: 4px;
+  --mdc-filled-button-container-color: var(--bw-nutritionist);
+  --mdc-filled-button-label-text-color: #fff;
+}

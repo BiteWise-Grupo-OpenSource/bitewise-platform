@@ -334,5 +334,53 @@
       "cm": "cm",
       "kg": "kg"
     }
+  },
+  "communication": {
+    "access": {
+      "open": "Abrir mensajes",
+      "openInbox": "Abrir bandeja"
+    },
+    "patient": {
+      "eyebrow": "Mensajes",
+      "title": "Tu conversacion",
+      "with": "Con {{name}}",
+      "empty": "Aun no tienes mensajes."
+    },
+    "nutritionist": {
+      "tag": "Mensajeria",
+      "eyebrow": "Mensajeria con pacientes",
+      "title": "Conversaciones",
+      "subtitle": "Responde a tus pacientes desde una sola bandeja.",
+      "back": "Volver al panel",
+      "logout": "Cerrar sesion",
+      "conversationWith": "Conversacion con {{name}}",
+      "emptyTitle": "Sin conversacion seleccionada",
+      "emptySubtitle": "Elige un paciente de la bandeja para leer y responder."
+    },
+    "inbox": {
+      "title": "Bandeja",
+      "awaiting": "Esperando respuesta",
+      "awaitingCount": "Conversaciones esperando respuesta",
+      "noMessages": "Aun sin mensajes"
+    },
+    "thread": {
+      "empty": "Aun no hay mensajes en esta conversacion."
+    },
+    "composer": {
+      "label": "Mensaje",
+      "placeholder": "Escribe un mensaje",
+      "send": "Enviar"
+    },
+    "samples": {
+      "welcome": "Te damos la bienvenida a BiteWise! Sere tu nutricionista.",
+      "planQuestion": "Hola! Tengo una pregunta sobre el plan de esta semana.",
+      "planAnswer": "Hola! Claro, dime.",
+      "snackSwap": "Puedo cambiar la merienda de la tarde por fruta?",
+      "thanks": "Perfecto, gracias!",
+      "checkIn": "Como te fue con las comidas esta semana?",
+      "progressUpdate": "Bastante bien, cumpli el objetivo de calorias casi todos los dias.",
+      "labReminder": "Recuerda enviar tus ultimos analisis antes de la cita.",
+      "scheduleAsk": "Podriamos mover la proxima cita al viernes?"
+    }
   }
 }

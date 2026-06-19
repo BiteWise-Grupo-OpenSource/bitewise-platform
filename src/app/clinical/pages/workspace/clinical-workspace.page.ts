@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -18,6 +19,7 @@ import { ClinicalService } from '../../services/clinical.service';
     MatButtonModule,
     MatCardModule,
     MatToolbarModule,
+    RouterLink,
     TranslatePipe,
     LanguageSwitcherComponent,
     ClinicalSummaryComponent,

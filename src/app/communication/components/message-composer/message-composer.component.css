@@ -1,0 +1,19 @@
+.composer {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.composer-field {
+  flex: 1 1 auto;
+}
+
+.send {
+  margin-top: 4px;
+  --mdc-filled-button-container-color: var(--composer-accent, var(--bw-nutritionist));
+  --mdc-filled-button-label-text-color: #fff;
+}
+
+.send:disabled {
+  --mdc-filled-button-container-color: var(--bw-surface-muted);
+}

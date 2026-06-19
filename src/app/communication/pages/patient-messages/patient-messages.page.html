@@ -1,0 +1,20 @@
+<section class="patient-messages">
+  @if (conversation(); as conversation) {
+    <header class="messages-header">
+      <p class="eyebrow">{{ 'communication.patient.eyebrow' | translate }}</p>
+      <h1>{{ 'communication.patient.title' | translate }}</h1>
+      <p class="with">{{ 'communication.patient.with' | translate: { name: conversation.nutritionistName } }}</p>
+    </header>
+
+    <mat-card appearance="outlined" class="messages-card">
+      <app-conversation-thread [messages]="messages()" viewer="patient" />
+      <app-message-composer (send)="send($event)" />
+    </mat-card>
+  } @else {
+    <mat-card appearance="outlined" class="messages-empty">
+      <p class="eyebrow">{{ 'communication.patient.eyebrow' | translate }}</p>
+      <h1>{{ 'communication.patient.title' | translate }}</h1>
+      <p>{{ 'communication.patient.empty' | translate }}</p>
+    </mat-card>
+  }
+</section>

@@ -1,0 +1,24 @@
+<div
+  class="thread"
+  [class.viewer-patient]="viewer() === 'patient'"
+  [class.viewer-nutritionist]="viewer() === 'nutritionist'"
+>
+  @if (messages().length) {
+    <ul class="messages">
+      @for (message of messages(); track message.id) {
+        <li class="message" [class.mine]="message.author === viewer()" [class.theirs]="message.author !== viewer()">
+          <div class="bubble">
+            @if (message.bodyKey) {
+              <p class="body">{{ message.bodyKey | translate }}</p>
+            } @else {
+              <p class="body">{{ message.body }}</p>
+            }
+            <time class="time" [attr.datetime]="message.sentAt">{{ message.sentAt | date: 'short' }}</time>
+          </div>
+        </li>
+      }
+    </ul>
+  } @else {
+    <p class="empty">{{ emptyKey() | translate }}</p>
+  }
+</div>

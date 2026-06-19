@@ -334,5 +334,53 @@
       "cm": "cm",
       "kg": "kg"
     }
+  },
+  "communication": {
+    "access": {
+      "open": "Open messages",
+      "openInbox": "Open inbox"
+    },
+    "patient": {
+      "eyebrow": "Messages",
+      "title": "Your conversation",
+      "with": "With {{name}}",
+      "empty": "You don't have any messages yet."
+    },
+    "nutritionist": {
+      "tag": "Messaging",
+      "eyebrow": "Patient messaging",
+      "title": "Conversations",
+      "subtitle": "Reply to your patients from a single inbox.",
+      "back": "Back to workspace",
+      "logout": "Sign out",
+      "conversationWith": "Conversation with {{name}}",
+      "emptyTitle": "No conversation selected",
+      "emptySubtitle": "Pick a patient from the inbox to read and reply."
+    },
+    "inbox": {
+      "title": "Inbox",
+      "awaiting": "Awaiting reply",
+      "awaitingCount": "Conversations awaiting reply",
+      "noMessages": "No messages yet"
+    },
+    "thread": {
+      "empty": "No messages in this conversation yet."
+    },
+    "composer": {
+      "label": "Message",
+      "placeholder": "Write a message",
+      "send": "Send"
+    },
+    "samples": {
+      "welcome": "Welcome to BiteWise! I'll be your nutritionist.",
+      "planQuestion": "Hi! I have a question about this week's plan.",
+      "planAnswer": "Hello! Of course, go ahead.",
+      "snackSwap": "Can I swap the afternoon snack for fruit?",
+      "thanks": "Perfect, thank you!",
+      "checkIn": "How did your meals go this week?",
+      "progressUpdate": "Pretty well, I kept the calorie target most days.",
+      "labReminder": "Remember to send your latest lab results before our visit.",
+      "scheduleAsk": "Could we move our next appointment to Friday?"
+    }
   }
 }

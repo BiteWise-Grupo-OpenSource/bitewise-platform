@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { nutritionistMessagesRoute } from '../communication/communication.routes';
 
 /**
  * Routes for the clinical (professional) bounded context.
@@ -11,7 +12,8 @@ export const clinicalRoutes: Routes = [
     path: '',
     loadComponent: () =>
       import('./pages/workspace/clinical-workspace.page').then((m) => m.ClinicalWorkspacePage)
-  }
+  },
+  nutritionistMessagesRoute
 ];
 
 export default clinicalRoutes;

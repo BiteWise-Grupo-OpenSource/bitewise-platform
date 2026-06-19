@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { authGuard } from '../iam/guards/auth.guard';
 import { roleGuard } from '../iam/guards/role.guard';
+import { patientMessagesRoute } from '../communication/communication.routes';
 
 export const patientRoutes: Routes = [
   {
@@ -66,19 +67,7 @@ export const patientRoutes: Routes = [
         loadComponent: () =>
           import('./pages/placeholder/patient-placeholder.page').then((m) => m.PatientPlaceholderPage)
       },
-      {
-        path: 'messages',
-        data: {
-          patientPage: {
-            eyebrowKey: 'patient.messages.eyebrow',
-            titleKey: 'patient.messages.title',
-            subtitleKey: 'patient.messages.subtitle',
-            primaryKey: 'patient.messages.primary'
-          }
-        },
-        loadComponent: () =>
-          import('./pages/placeholder/patient-placeholder.page').then((m) => m.PatientPlaceholderPage)
-      },
+      patientMessagesRoute,
       {
         path: 'settings',
         data: {

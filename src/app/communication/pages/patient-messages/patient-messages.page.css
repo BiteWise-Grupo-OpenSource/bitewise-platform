@@ -1,0 +1,62 @@
+.patient-messages {
+  --composer-accent: var(--bw-patient);
+  display: grid;
+  gap: 18px;
+  max-width: 880px;
+}
+
+.messages-header .eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--bw-patient);
+}
+
+.messages-header h1 {
+  margin: 4px 0 2px;
+  font-family: var(--bw-display-font);
+  font-size: 1.5rem;
+  color: var(--bw-ink);
+}
+
+.messages-header .with {
+  margin: 0;
+  color: var(--bw-muted);
+}
+
+.messages-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 18px;
+  background: var(--bw-surface);
+  border-color: var(--bw-border);
+}
+
+.messages-empty {
+  padding: 24px;
+  background: var(--bw-surface);
+  border-color: var(--bw-border);
+}
+
+.messages-empty .eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--bw-patient);
+}
+
+.messages-empty h1 {
+  margin: 4px 0 6px;
+  font-family: var(--bw-display-font);
+  font-size: 1.4rem;
+}
+
+.messages-empty p {
+  margin: 0;
+  color: var(--bw-muted);
+}

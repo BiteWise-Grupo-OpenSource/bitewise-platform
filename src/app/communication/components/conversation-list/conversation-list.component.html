@@ -1,0 +1,37 @@
+<ul class="inbox" role="listbox" [attr.aria-label]="'communication.inbox.title' | translate">
+  @for (item of conversations(); track item.id) {
+    <li>
+      <button
+        type="button"
+        class="inbox-row"
+        role="option"
+        [class.selected]="item.id === selectedId()"
+        [attr.aria-selected]="item.id === selectedId()"
+        (click)="choose(item.id)"
+      >
+        <span class="inbox-main">
+          <span class="name">
+            {{ item.patientName }}
+            @if (item.awaitingReply) {
+              <span class="dot" [attr.aria-label]="'communication.inbox.awaiting' | translate"></span>
+            }
+          </span>
+          @if (item.lastMessage; as last) {
+            <span class="preview">
+              @if (last.bodyKey) {
+                {{ last.bodyKey | translate }}
+              } @else {
+                {{ last.body }}
+              }
+            </span>
+          } @else {
+            <span class="preview muted">{{ 'communication.inbox.noMessages' | translate }}</span>
+          }
+        </span>
+        @if (item.lastMessage; as last) {
+          <time class="time" [attr.datetime]="last.sentAt">{{ last.sentAt | date: 'shortDate' }}</time>
+        }
+      </button>
+    </li>
+  }
+</ul>

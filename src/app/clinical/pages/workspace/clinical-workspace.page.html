@@ -47,9 +47,12 @@
       </mat-card>
 
       <mat-card appearance="outlined" class="panel" aria-labelledby="messages-title">
-        <header class="panel-head">
-          <h2 id="messages-title">{{ 'clinical.messages.title' | translate }}</h2>
-          <p>{{ 'clinical.messages.subtitle' | translate }}</p>
+        <header class="panel-head with-action">
+          <div>
+            <h2 id="messages-title">{{ 'clinical.messages.title' | translate }}</h2>
+            <p>{{ 'clinical.messages.subtitle' | translate }}</p>
+          </div>
+          <a mat-stroked-button routerLink="/clinical/messages">{{ 'communication.access.openInbox' | translate }}</a>
         </header>
         @if (clinical.messages().length) {
           <ul class="panel-rows">
@@ -95,10 +98,12 @@
           <p>{{ 'clinical.placeholders.nutritionDesc' | translate }}</p>
           <span class="badge">{{ 'clinical.placeholders.comingSoon' | translate }}</span>
         </mat-card>
-        <mat-card appearance="outlined" class="placeholder-card">
+        <mat-card appearance="outlined" class="placeholder-card access-card">
           <h3>{{ 'clinical.placeholders.communicationTitle' | translate }}</h3>
           <p>{{ 'clinical.placeholders.communicationDesc' | translate }}</p>
-          <span class="badge">{{ 'clinical.placeholders.comingSoon' | translate }}</span>
+          <a mat-flat-button class="access-button" routerLink="/clinical/messages">
+            {{ 'communication.access.open' | translate }}
+          </a>
         </mat-card>
       </div>
     </section>
