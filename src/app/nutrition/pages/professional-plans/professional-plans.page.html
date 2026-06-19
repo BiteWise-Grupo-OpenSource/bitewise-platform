@@ -1,0 +1,75 @@
+<section class="professional-page">
+  <header class="page-hero">
+    <div>
+      <span class="eyebrow">{{ 'nutrition.professional.eyebrow' | translate }}</span>
+      <h1>{{ 'nutrition.professional.title' | translate }}</h1>
+      <p>{{ 'nutrition.professional.subtitle' | translate }}</p>
+    </div>
+    <a mat-stroked-button routerLink="/clinical">{{ 'nutrition.professional.back' | translate }}</a>
+  </header>
+
+  <section class="workspace-grid">
+    <mat-card appearance="outlined" class="plan-list">
+      <header>
+        <h2>{{ 'nutrition.professional.planListTitle' | translate }}</h2>
+        <span>{{ nutrition.plans().length }} {{ 'nutrition.professional.planCount' | translate }}</span>
+      </header>
+
+      <mat-nav-list>
+        @for (plan of nutrition.plans(); track plan.id) {
+          <button
+            type="button"
+            mat-list-item
+            [class.selected]="nutrition.selectedPlan()?.id === plan.id"
+            (click)="nutrition.selectPlan(plan.id)"
+          >
+            <span matListItemTitle>{{ plan.patientName }}</span>
+            <span matListItemLine>{{ plan.titleKey | translate }}</span>
+            <span matListItemMeta>{{ plan.adherence }}{{ 'nutrition.units.percent' | translate }}</span>
+          </button>
+        }
+      </mat-nav-list>
+    </mat-card>
+
+    @if (nutrition.selectedPlan(); as selected) {
+      <section class="plan-detail">
+        <mat-card appearance="outlined" class="detail-card">
+          <div class="detail-head">
+            <div>
+              <span class="eyebrow">{{ 'nutrition.professional.selectedPlan' | translate }}</span>
+              <h2>{{ selected.patientName }}</h2>
+              <p>{{ selected.titleKey | translate }}</p>
+            </div>
+            <mat-chip>{{ ('nutrition.status.' + selected.status) | translate }}</mat-chip>
+          </div>
+
+          <div class="detail-stats">
+            <span>
+              {{ 'nutrition.goals.label' | translate }}
+              <strong>{{ ('nutrition.goals.' + selected.goal) | translate }}</strong>
+            </span>
+            <span>
+              {{ 'nutrition.metrics.adherence' | translate }}
+              <strong>{{ selected.adherence }}{{ 'nutrition.units.percent' | translate }}</strong>
+            </span>
+            <span>
+              {{ 'nutrition.metrics.calories' | translate }}
+              <strong>{{ selected.dailyTarget.calories }} {{ 'nutrition.units.kcal' | translate }}</strong>
+            </span>
+          </div>
+
+          <mat-progress-bar mode="determinate" [value]="selected.adherence" />
+          <p class="date-range">
+            {{ selected.startDate | date: 'mediumDate' }} - {{ selected.endDate | date: 'mediumDate' }}
+          </p>
+        </mat-card>
+
+        <section class="day-grid">
+          @for (day of selected.days; track day.id) {
+            <app-nutrition-day-card [day]="day" />
+          }
+        </section>
+      </section>
+    }
+  </section>
+</section>

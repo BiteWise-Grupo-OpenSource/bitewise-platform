@@ -334,5 +334,198 @@
       "cm": "cm",
       "kg": "kg"
     }
+  },
+  "nutrition": {
+    "status": {
+      "active": "Active",
+      "review": "In review",
+      "draft": "Draft",
+      "completed": "Completed",
+      "planned": "Planned"
+    },
+    "metrics": {
+      "calories": "Calories",
+      "macros": "Macronutrients",
+      "protein": "Protein",
+      "carbs": "Carbs",
+      "fat": "Fat",
+      "fiber": "Fiber",
+      "proteinShort": "P",
+      "carbsShort": "C",
+      "fatShort": "F",
+      "fiberShort": "Fi",
+      "adherence": "Adherence"
+    },
+    "units": {
+      "kcal": "kcal",
+      "minutes": "min",
+      "percent": "%"
+    },
+    "meals": {
+      "breakfast": "Breakfast",
+      "lunch": "Lunch",
+      "dinner": "Dinner",
+      "snack": "Snack"
+    },
+    "days": {
+      "mon": "Monday",
+      "tue": "Tuesday",
+      "wed": "Wednesday",
+      "thu": "Thursday",
+      "fri": "Friday",
+      "sat": "Saturday",
+      "sun": "Sunday"
+    },
+    "foods": {
+      "oats": "Protein oats with berries",
+      "chickenBowl": "Grilled chicken bowl",
+      "salmonQuinoa": "Salmon with quinoa",
+      "toast": "Avocado toast with egg",
+      "lentilStew": "Lentil and vegetable stew",
+      "greekYogurt": "Greek yogurt with fruit",
+      "turkeyWrap": "Turkey and hummus wrap",
+      "vegetableCurry": "Vegetable curry with rice",
+      "appleAlmonds": "Apple with almonds"
+    },
+    "portions": {
+      "bowl": "1 bowl",
+      "plate": "1 plate",
+      "twoSlices": "2 slices",
+      "cup": "1 cup",
+      "wrap": "1 wrap",
+      "snack": "1 snack serving"
+    },
+    "plans": {
+      "mediterranean1800": "Mediterranean plan - 1800 kcal",
+      "lowCarb1600": "Low-carb plan - 1600 kcal",
+      "highProtein2100": "High-protein plan - 2100 kcal"
+    },
+    "goals": {
+      "label": "Goal",
+      "weightLoss": "Weight loss",
+      "muscleGain": "Muscle gain",
+      "clinicalNutrition": "Clinical nutrition",
+      "energy": "More energy"
+    },
+    "patientPlan": {
+      "eyebrow": "Weekly plan",
+      "subtitle": "Your active plan was assigned by {{coach}} and is ready to follow day by day.",
+      "summaryLabel": "Nutrition plan summary",
+      "dates": "Plan dates",
+      "completedDays": "Completed days",
+      "targetEyebrow": "Daily target",
+      "targetTitle": "Macro distribution"
+    },
+    "log": {
+      "eyebrow": "Food log",
+      "title": "Log meal",
+      "subtitle": "Add foods to today's local mock log and review your current macro totals.",
+      "formTitle": "Add food",
+      "foodLabel": "Food",
+      "mealLabel": "Meal",
+      "add": "Add to log",
+      "todayEyebrow": "Today",
+      "entriesTitle": "Logged foods",
+      "entriesCount": "entries"
+    },
+    "recipes": {
+      "eyebrow": "Recipe library",
+      "title": "Recipes for your plan",
+      "subtitle": "Filter mock recipes by goal and compare macro fit before adding them to a plan.",
+      "filterLabel": "Recipe goal filter",
+      "all": "All",
+      "tagsLabel": "Recipe tags",
+      "items": {
+        "salmon": {
+          "title": "Citrus salmon with quinoa",
+          "summary": "A balanced dinner with omega-3 fats, steady carbs, and a high-protein base."
+        },
+        "lentil": {
+          "title": "Lentil power stew",
+          "summary": "Batch-friendly legumes and vegetables for fiber, energy, and mineral density."
+        },
+        "turkey": {
+          "title": "Turkey recovery wrap",
+          "summary": "A fast high-protein wrap for training days or a compact lunch."
+        },
+        "curry": {
+          "title": "Vegetable curry bowl",
+          "summary": "Plant-forward comfort food with controlled sodium and high fiber."
+        }
+      }
+    },
+    "difficulty": {
+      "easy": "Easy",
+      "medium": "Medium"
+    },
+    "tags": {
+      "omega3": "Omega-3",
+      "dinner": "Dinner",
+      "highFiber": "High fiber",
+      "batch": "Batch prep",
+      "highProtein": "High protein",
+      "quick": "Quick",
+      "plantForward": "Plant-forward",
+      "lowSodium": "Low sodium"
+    },
+    "professional": {
+      "eyebrow": "Nutrition plans",
+      "title": "Plan management",
+      "subtitle": "Review assigned plans, adherence, daily targets, and patient status from the nutrition context.",
+      "back": "Back to workspace",
+      "planListTitle": "Patient plans",
+      "planCount": "plans",
+      "selectedPlan": "Selected plan"
+    }
+  },
+  "communication": {
+    "roles": {
+      "patient": "Patient",
+      "nutritionist": "Nutritionist"
+    },
+    "status": {
+      "sent": "Sent",
+      "delivered": "Delivered",
+      "read": "Read"
+    },
+    "subjects": {
+      "weekPlan": "Weekly plan check-in",
+      "appointment": "Appointment change",
+      "training": "Training day question"
+    },
+    "samples": {
+      "andreaQuestion": "Can I swap the afternoon snack for fruit on training days?",
+      "carlosAnswer": "Yes. Choose fruit with Greek yogurt so the protein target stays on track.",
+      "carlosReminder": "Remember to log dinner today so I can review the Friday totals.",
+      "marcoReschedule": "Could we move our next appointment to the afternoon?",
+      "marcoFollowup": "I also uploaded my latest glucose notes for review.",
+      "luciaSnack": "Should I add a second snack after strength training?"
+    },
+    "thread": {
+      "label": "Conversation thread"
+    },
+    "patient": {
+      "eyebrow": "Secure messages",
+      "title": "Messages",
+      "subtitle": "Ask your assigned nutritionist questions about your plan, meals, and weekly progress."
+    },
+    "professional": {
+      "eyebrow": "Patient communication",
+      "title": "Inbox",
+      "subtitle": "Review patient conversations, track unread messages, and send local mock replies.",
+      "back": "Back to workspace"
+    },
+    "inbox": {
+      "title": "Conversations",
+      "unread": "unread"
+    },
+    "composer": {
+      "label": "Message",
+      "placeholder": "Write a question for your nutritionist",
+      "send": "Send message",
+      "professionalLabel": "Reply",
+      "professionalPlaceholder": "Write a reply to the patient",
+      "reply": "Send reply"
+    }
   }
 }

@@ -1,0 +1,77 @@
+<section class="professional-page">
+  <header class="page-hero">
+    <div>
+      <span class="eyebrow">{{ 'communication.professional.eyebrow' | translate }}</span>
+      <h1>{{ 'communication.professional.title' | translate }}</h1>
+      <p>{{ 'communication.professional.subtitle' | translate }}</p>
+    </div>
+    <a mat-stroked-button routerLink="/clinical">{{ 'communication.professional.back' | translate }}</a>
+  </header>
+
+  <section class="inbox-grid">
+    <mat-card appearance="outlined" class="inbox-card">
+      <header>
+        <h2>{{ 'communication.inbox.title' | translate }}</h2>
+        <span
+          [matBadge]="communication.unreadForNutritionist()"
+          [matBadgeHidden]="communication.unreadForNutritionist() === 0"
+          matBadgeColor="warn"
+        >
+          {{ 'communication.inbox.unread' | translate }}
+        </span>
+      </header>
+
+      <mat-nav-list>
+        @for (conversation of communication.conversations(); track conversation.id) {
+          @let preview = communication.preview(conversation);
+          <button
+            type="button"
+            mat-list-item
+            [class.selected]="communication.selectedConversationId() === conversation.id"
+            (click)="communication.selectConversation(conversation.id, 'nutritionist')"
+          >
+            <span matListItemTitle>{{ communication.participantName(conversation, 'patient') }}</span>
+            <span matListItemLine>{{ conversation.subjectKey | translate }}</span>
+            @if (preview) {
+              <span matListItemLine>
+                {{ preview.bodyKey ? (preview.bodyKey | translate) : preview.body }}
+              </span>
+            }
+            @if (preview) {
+              <span matListItemMeta>{{ preview.sentAt | date: 'shortTime' }}</span>
+            }
+          </button>
+        }
+      </mat-nav-list>
+    </mat-card>
+
+    @if (communication.selectedConversation(); as conversation) {
+      <mat-card appearance="outlined" class="conversation-card">
+        <header class="conversation-head">
+          <div>
+            <span class="eyebrow">{{ conversation.subjectKey | translate }}</span>
+            <h2>{{ communication.participantName(conversation, 'patient') }}</h2>
+          </div>
+          <span class="unread">{{ conversation.unreadByNutritionist }} {{ 'communication.inbox.unread' | translate }}</span>
+        </header>
+
+        <app-conversation-thread [conversation]="conversation" viewerRole="nutritionist" />
+
+        <form class="composer" (ngSubmit)="send(conversation.id)">
+          <mat-form-field appearance="outline">
+            <mat-label>{{ 'communication.composer.professionalLabel' | translate }}</mat-label>
+            <textarea
+              matInput
+              rows="3"
+              [placeholder]="'communication.composer.professionalPlaceholder' | translate"
+              [ngModel]="draft()"
+              (ngModelChange)="draft.set($event)"
+              name="reply"
+            ></textarea>
+          </mat-form-field>
+          <button type="submit" mat-flat-button color="primary">{{ 'communication.composer.reply' | translate }}</button>
+        </form>
+      </mat-card>
+    }
+  </section>
+</section>

@@ -11,6 +11,16 @@ export const clinicalRoutes: Routes = [
     path: '',
     loadComponent: () =>
       import('./pages/workspace/clinical-workspace.page').then((m) => m.ClinicalWorkspacePage)
+  },
+  {
+    path: 'nutrition',
+    loadComponent: () =>
+      import('../nutrition/pages/professional-plans/professional-plans.page').then((m) => m.ProfessionalPlansPage)
+  },
+  {
+    path: 'messages',
+    loadComponent: () =>
+      import('../communication/pages/professional-messages/professional-messages.page').then((m) => m.ProfessionalMessagesPage)
   }
 ];
 

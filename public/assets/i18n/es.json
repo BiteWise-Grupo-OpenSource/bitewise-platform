@@ -334,5 +334,198 @@
       "cm": "cm",
       "kg": "kg"
     }
+  },
+  "nutrition": {
+    "status": {
+      "active": "Activo",
+      "review": "En revision",
+      "draft": "Borrador",
+      "completed": "Completado",
+      "planned": "Planificado"
+    },
+    "metrics": {
+      "calories": "Calorias",
+      "macros": "Macronutrientes",
+      "protein": "Proteina",
+      "carbs": "Carbos",
+      "fat": "Grasas",
+      "fiber": "Fibra",
+      "proteinShort": "P",
+      "carbsShort": "C",
+      "fatShort": "G",
+      "fiberShort": "Fi",
+      "adherence": "Adherencia"
+    },
+    "units": {
+      "kcal": "kcal",
+      "minutes": "min",
+      "percent": "%"
+    },
+    "meals": {
+      "breakfast": "Desayuno",
+      "lunch": "Almuerzo",
+      "dinner": "Cena",
+      "snack": "Snack"
+    },
+    "days": {
+      "mon": "Lunes",
+      "tue": "Martes",
+      "wed": "Miercoles",
+      "thu": "Jueves",
+      "fri": "Viernes",
+      "sat": "Sabado",
+      "sun": "Domingo"
+    },
+    "foods": {
+      "oats": "Avena proteica con frutos rojos",
+      "chickenBowl": "Bowl de pollo a la plancha",
+      "salmonQuinoa": "Salmon con quinua",
+      "toast": "Tostada de aguacate con huevo",
+      "lentilStew": "Guiso de lentejas y vegetales",
+      "greekYogurt": "Yogurt griego con fruta",
+      "turkeyWrap": "Wrap de pavo y hummus",
+      "vegetableCurry": "Curry vegetal con arroz",
+      "appleAlmonds": "Manzana con almendras"
+    },
+    "portions": {
+      "bowl": "1 bowl",
+      "plate": "1 plato",
+      "twoSlices": "2 tostadas",
+      "cup": "1 taza",
+      "wrap": "1 wrap",
+      "snack": "1 porcion de snack"
+    },
+    "plans": {
+      "mediterranean1800": "Plan mediterraneo - 1800 kcal",
+      "lowCarb1600": "Plan bajo en carbohidratos - 1600 kcal",
+      "highProtein2100": "Plan alto en proteina - 2100 kcal"
+    },
+    "goals": {
+      "label": "Objetivo",
+      "weightLoss": "Perdida de peso",
+      "muscleGain": "Ganancia muscular",
+      "clinicalNutrition": "Nutricion clinica",
+      "energy": "Mas energia"
+    },
+    "patientPlan": {
+      "eyebrow": "Plan semanal",
+      "subtitle": "Tu plan activo fue asignado por {{coach}} y esta listo para seguir dia a dia.",
+      "summaryLabel": "Resumen del plan nutricional",
+      "dates": "Fechas del plan",
+      "completedDays": "Dias completados",
+      "targetEyebrow": "Meta diaria",
+      "targetTitle": "Distribucion de macros"
+    },
+    "log": {
+      "eyebrow": "Registro alimentario",
+      "title": "Registrar comida",
+      "subtitle": "Agrega alimentos al registro mock de hoy y revisa tus totales actuales de macros.",
+      "formTitle": "Agregar alimento",
+      "foodLabel": "Alimento",
+      "mealLabel": "Comida",
+      "add": "Agregar al registro",
+      "todayEyebrow": "Hoy",
+      "entriesTitle": "Alimentos registrados",
+      "entriesCount": "registros"
+    },
+    "recipes": {
+      "eyebrow": "Biblioteca de recetas",
+      "title": "Recetas para tu plan",
+      "subtitle": "Filtra recetas mock por objetivo y compara su ajuste de macros antes de sumarlas al plan.",
+      "filterLabel": "Filtro de objetivo de recetas",
+      "all": "Todas",
+      "tagsLabel": "Etiquetas de receta",
+      "items": {
+        "salmon": {
+          "title": "Salmon citrico con quinua",
+          "summary": "Una cena balanceada con grasas omega-3, carbohidratos estables y base alta en proteina."
+        },
+        "lentil": {
+          "title": "Guiso energetico de lentejas",
+          "summary": "Legumbres y vegetales para preparar en lote con fibra, energia y densidad mineral."
+        },
+        "turkey": {
+          "title": "Wrap de recuperacion con pavo",
+          "summary": "Un wrap rapido alto en proteina para dias de entrenamiento o almuerzo compacto."
+        },
+        "curry": {
+          "title": "Bowl de curry vegetal",
+          "summary": "Comida vegetal reconfortante con sodio controlado y alto aporte de fibra."
+        }
+      }
+    },
+    "difficulty": {
+      "easy": "Facil",
+      "medium": "Media"
+    },
+    "tags": {
+      "omega3": "Omega-3",
+      "dinner": "Cena",
+      "highFiber": "Alta fibra",
+      "batch": "Preparacion por lote",
+      "highProtein": "Alta proteina",
+      "quick": "Rapida",
+      "plantForward": "Base vegetal",
+      "lowSodium": "Bajo sodio"
+    },
+    "professional": {
+      "eyebrow": "Planes nutricionales",
+      "title": "Gestion de planes",
+      "subtitle": "Revisa planes asignados, adherencia, metas diarias y estado del paciente desde el contexto de nutricion.",
+      "back": "Volver al espacio",
+      "planListTitle": "Planes de pacientes",
+      "planCount": "planes",
+      "selectedPlan": "Plan seleccionado"
+    }
+  },
+  "communication": {
+    "roles": {
+      "patient": "Paciente",
+      "nutritionist": "Nutricionista"
+    },
+    "status": {
+      "sent": "Enviado",
+      "delivered": "Entregado",
+      "read": "Leido"
+    },
+    "subjects": {
+      "weekPlan": "Consulta del plan semanal",
+      "appointment": "Cambio de cita",
+      "training": "Pregunta de entrenamiento"
+    },
+    "samples": {
+      "andreaQuestion": "Puedo cambiar el snack de la tarde por fruta en dias de entrenamiento?",
+      "carlosAnswer": "Si. Elige fruta con yogurt griego para mantener el objetivo de proteina.",
+      "carlosReminder": "Recuerda registrar la cena de hoy para que pueda revisar los totales del viernes.",
+      "marcoReschedule": "Podriamos mover nuestra proxima cita a la tarde?",
+      "marcoFollowup": "Tambien subi mis ultimas notas de glucosa para revision.",
+      "luciaSnack": "Deberia agregar un segundo snack despues del entrenamiento de fuerza?"
+    },
+    "thread": {
+      "label": "Hilo de conversacion"
+    },
+    "patient": {
+      "eyebrow": "Mensajes seguros",
+      "title": "Mensajes",
+      "subtitle": "Haz preguntas a tu nutricionista asignado sobre tu plan, comidas y progreso semanal."
+    },
+    "professional": {
+      "eyebrow": "Comunicacion con pacientes",
+      "title": "Inbox",
+      "subtitle": "Revisa conversaciones de pacientes, controla mensajes sin leer y envia respuestas mock locales.",
+      "back": "Volver al espacio"
+    },
+    "inbox": {
+      "title": "Conversaciones",
+      "unread": "sin leer"
+    },
+    "composer": {
+      "label": "Mensaje",
+      "placeholder": "Escribe una pregunta para tu nutricionista",
+      "send": "Enviar mensaje",
+      "professionalLabel": "Respuesta",
+      "professionalPlaceholder": "Escribe una respuesta para el paciente",
+      "reply": "Enviar respuesta"
+    }
   }
 }

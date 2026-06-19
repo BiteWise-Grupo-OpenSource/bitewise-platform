@@ -1,0 +1,138 @@
+.log-page {
+  display: grid;
+  gap: 22px;
+}
+
+.page-hero,
+.log-form,
+.totals-card,
+.entries-card {
+  background: var(--bw-surface);
+  border-color: var(--bw-border);
+  border-radius: 8px;
+}
+
+.page-hero {
+  border: 1px solid var(--bw-border);
+  padding: clamp(20px, 4vw, 34px);
+}
+
+.page-hero h1,
+.log-form h2,
+.totals-card h2,
+.entries-card h2 {
+  font-family: var(--bw-display-font);
+  letter-spacing: 0;
+  margin: 6px 0 10px;
+}
+
+.page-hero h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+.page-hero p {
+  color: var(--bw-muted);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.eyebrow {
+  color: var(--bw-patient);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.log-layout {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: minmax(280px, 420px) 1fr;
+}
+
+.log-form {
+  display: grid;
+  gap: 14px;
+}
+
+.totals-card h2 {
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
+}
+
+.macro-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.macro-grid span {
+  background: var(--bw-surface-muted);
+  border-radius: 8px;
+  color: var(--bw-muted);
+  padding: 14px;
+}
+
+.macro-grid strong {
+  color: var(--bw-ink);
+  display: block;
+  font-size: 1.2rem;
+  margin-top: 6px;
+}
+
+.entries-card header,
+.entry-row {
+  align-items: center;
+  display: flex;
+  gap: 14px;
+  justify-content: space-between;
+}
+
+.entries-card header {
+  margin-bottom: 16px;
+}
+
+.entries-card header span,
+.entry-row small {
+  color: var(--bw-muted);
+}
+
+.entry-list {
+  display: grid;
+  gap: 10px;
+}
+
+.entry-row {
+  border-top: 1px solid var(--bw-border);
+  padding-top: 12px;
+}
+
+.entry-row div {
+  flex: 1;
+  min-width: 0;
+}
+
+.entry-row strong,
+.entry-row small {
+  display: block;
+}
+
+.meal-pill {
+  background: var(--bw-patient-soft);
+  border-radius: 999px;
+  color: var(--bw-patient);
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 7px 10px;
+}
+
+@media (max-width: 860px) {
+  .log-layout,
+  .macro-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .entry-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

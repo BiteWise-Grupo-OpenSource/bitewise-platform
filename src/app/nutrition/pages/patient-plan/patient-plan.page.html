@@ -1,0 +1,51 @@
+<section class="nutrition-page">
+  @if (plan(); as activePlan) {
+    <header class="page-hero">
+      <div>
+        <span class="eyebrow">{{ 'nutrition.patientPlan.eyebrow' | translate }}</span>
+        <h1>{{ activePlan.titleKey | translate }}</h1>
+        <p>{{ 'nutrition.patientPlan.subtitle' | translate: { coach: activePlan.assignedBy } }}</p>
+      </div>
+      <mat-chip>{{ ('nutrition.status.' + activePlan.status) | translate }}</mat-chip>
+    </header>
+
+    <section class="summary-grid" [attr.aria-label]="'nutrition.patientPlan.summaryLabel' | translate">
+      <mat-card appearance="outlined" class="summary-card">
+        <span>{{ 'nutrition.patientPlan.dates' | translate }}</span>
+        <strong>{{ activePlan.startDate | date: 'mediumDate' }} - {{ activePlan.endDate | date: 'mediumDate' }}</strong>
+      </mat-card>
+      <mat-card appearance="outlined" class="summary-card">
+        <span>{{ 'nutrition.metrics.adherence' | translate }}</span>
+        <strong>{{ activePlan.adherence }}{{ 'nutrition.units.percent' | translate }}</strong>
+        <mat-progress-bar mode="determinate" [value]="activePlan.adherence" />
+      </mat-card>
+      <mat-card appearance="outlined" class="summary-card">
+        <span>{{ 'nutrition.metrics.calories' | translate }}</span>
+        <strong>{{ activePlan.dailyTarget.calories }} {{ 'nutrition.units.kcal' | translate }}</strong>
+      </mat-card>
+      <mat-card appearance="outlined" class="summary-card">
+        <span>{{ 'nutrition.patientPlan.completedDays' | translate }}</span>
+        <strong>{{ completedDays() }} / {{ activePlan.days.length }}</strong>
+      </mat-card>
+    </section>
+
+    <section class="target-panel">
+      <div>
+        <span class="eyebrow">{{ 'nutrition.patientPlan.targetEyebrow' | translate }}</span>
+        <h2>{{ 'nutrition.patientPlan.targetTitle' | translate }}</h2>
+      </div>
+      <div class="target-macros">
+        <span>{{ 'nutrition.metrics.protein' | translate }} <strong>{{ activePlan.dailyTarget.proteinG }}g</strong></span>
+        <span>{{ 'nutrition.metrics.carbs' | translate }} <strong>{{ activePlan.dailyTarget.carbsG }}g</strong></span>
+        <span>{{ 'nutrition.metrics.fat' | translate }} <strong>{{ activePlan.dailyTarget.fatG }}g</strong></span>
+        <span>{{ 'nutrition.metrics.fiber' | translate }} <strong>{{ activePlan.dailyTarget.fiberG }}g</strong></span>
+      </div>
+    </section>
+
+    <section class="day-grid">
+      @for (day of activePlan.days; track day.id) {
+        <app-nutrition-day-card [day]="day" />
+      }
+    </section>
+  }
+</section>

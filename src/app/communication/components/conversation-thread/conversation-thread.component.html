@@ -1,0 +1,14 @@
+<div class="thread" [attr.aria-label]="'communication.thread.label' | translate">
+  @for (message of conversation().messages; track message.id) {
+    <article class="message" [class]="messageClass(message.authorRole)">
+      <div class="bubble">
+        <span class="author">{{ ('communication.roles.' + message.authorRole) | translate }}</span>
+        <p>{{ message.bodyKey ? (message.bodyKey | translate) : message.body }}</p>
+        <footer>
+          <span>{{ message.sentAt | date: 'short' }}</span>
+          <mat-chip>{{ ('communication.status.' + message.status) | translate }}</mat-chip>
+        </footer>
+      </div>
+    </article>
+  }
+</div>

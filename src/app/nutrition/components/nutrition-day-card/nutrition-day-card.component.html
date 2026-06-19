@@ -1,0 +1,35 @@
+<mat-card appearance="outlined" class="day-card" [class.completed]="day().completed">
+  <header class="day-head">
+    <div>
+      <span class="eyebrow">{{ day().dayKey | translate }}</span>
+      <h3>{{ day().date | date: 'mediumDate' }}</h3>
+    </div>
+    <mat-chip>{{ (day().completed ? 'nutrition.status.completed' : 'nutrition.status.planned') | translate }}</mat-chip>
+  </header>
+
+  <div class="calorie-row">
+    <span>{{ 'nutrition.metrics.calories' | translate }}</span>
+    <strong>{{ totals().calories }} / {{ day().target.calories }}</strong>
+  </div>
+  <mat-progress-bar mode="determinate" [value]="calorieProgress()" />
+
+  <div class="macro-strip" [attr.aria-label]="'nutrition.metrics.macros' | translate">
+    <span>{{ 'nutrition.metrics.proteinShort' | translate }} {{ totals().proteinG }}g</span>
+    <span>{{ 'nutrition.metrics.carbsShort' | translate }} {{ totals().carbsG }}g</span>
+    <span>{{ 'nutrition.metrics.fatShort' | translate }} {{ totals().fatG }}g</span>
+    <span>{{ 'nutrition.metrics.fiberShort' | translate }} {{ totals().fiberG }}g</span>
+  </div>
+
+  <div class="meal-list">
+    @for (item of day().items; track item.id) {
+      <article class="meal-item">
+        <span class="meal-kind">{{ ('nutrition.meals.' + item.meal) | translate }}</span>
+        <div>
+          <strong>{{ item.foodKey | translate }}</strong>
+          <small>{{ item.portionKey | translate }}</small>
+        </div>
+        <span>{{ item.calories }} {{ 'nutrition.units.kcal' | translate }}</span>
+      </article>
+    }
+  </div>
+</mat-card>
