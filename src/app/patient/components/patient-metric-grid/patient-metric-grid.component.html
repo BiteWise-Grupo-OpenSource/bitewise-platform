@@ -1,0 +1,12 @@
+<section class="metric-grid" [attr.aria-label]="'patient.dashboard.metricsLabel' | translate">
+  @for (metric of metrics; track metric.labelKey) {
+    <mat-card appearance="outlined" class="metric-card" [class]="'tone-' + metric.tone">
+      <span class="metric-label">{{ metric.labelKey | translate }}</span>
+      <strong>{{ metric.value }}</strong>
+      <span class="metric-helper">{{ metric.helperKey | translate }}</span>
+      @if (metric.progress !== undefined) {
+        <mat-progress-bar mode="determinate" [value]="metric.progress" />
+      }
+    </mat-card>
+  }
+</section>

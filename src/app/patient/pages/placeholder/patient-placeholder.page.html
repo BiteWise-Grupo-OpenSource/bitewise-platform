@@ -1,0 +1,11 @@
+<section class="placeholder-page">
+  <mat-card appearance="outlined">
+    <span>{{ page().eyebrowKey | translate }}</span>
+    <h1>{{ page().titleKey | translate }}</h1>
+    <p>{{ page().subtitleKey | translate }}</p>
+    <div class="actions">
+      <a mat-flat-button color="primary" routerLink="/patient">{{ 'patient.placeholder.back' | translate }}</a>
+      <button type="button" mat-stroked-button disabled>{{ page().primaryKey | translate }}</button>
+    </div>
+  </mat-card>
+</section>

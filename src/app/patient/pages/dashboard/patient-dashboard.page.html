@@ -1,0 +1,100 @@
+<section class="dashboard-page">
+  <header class="hero">
+    <div>
+      <span class="eyebrow">{{ 'patient.dashboard.eyebrow' | translate }}</span>
+      <h1>{{ 'patient.dashboard.title' | translate: { name: firstName() } }}</h1>
+      <p>{{ 'patient.dashboard.subtitle' | translate }}</p>
+    </div>
+    <a mat-flat-button color="primary" routerLink="/patient/log">
+      <span aria-hidden="true">+</span>
+      {{ 'patient.dashboard.primaryAction' | translate }}
+    </a>
+  </header>
+
+  <app-patient-metric-grid [metrics]="dashboard().metrics" />
+
+  <section class="panel-grid">
+    <mat-card appearance="outlined" class="panel">
+      <div class="panel-header">
+        <div>
+          <span class="eyebrow">{{ 'patient.dashboard.macros.eyebrow' | translate }}</span>
+          <h2>{{ 'patient.dashboard.macros.title' | translate }}</h2>
+        </div>
+        <div class="macro-ring" aria-hidden="true">
+          <span>70%</span>
+        </div>
+      </div>
+
+      <div class="macro-list">
+        @for (macro of dashboard().macros; track macro.labelKey) {
+          <div class="macro-row" [class]="'tone-' + macro.tone">
+            <span class="macro-dot" aria-hidden="true"></span>
+            <span>{{ macro.labelKey | translate }}</span>
+            <mat-progress-bar mode="determinate" [value]="macro.progress" />
+            <strong>{{ macro.value }}</strong>
+          </div>
+        }
+      </div>
+    </mat-card>
+
+    <mat-card appearance="outlined" class="panel">
+      <div class="panel-header">
+        <div>
+          <span class="eyebrow">{{ 'patient.dashboard.meals.eyebrow' | translate }}</span>
+          <h2>{{ 'patient.dashboard.meals.title' | translate }}</h2>
+        </div>
+        <a mat-stroked-button routerLink="/patient/log">{{ 'patient.dashboard.meals.add' | translate }}</a>
+      </div>
+
+      <div class="meal-list">
+        @for (meal of dashboard().meals; track meal.nameKey) {
+          <article class="meal-row" [class]="'tone-' + meal.tone">
+            <span class="meal-icon" aria-hidden="true">{{ meal.iconLabel }}</span>
+            <div>
+              <strong>{{ meal.nameKey | translate }}</strong>
+              <small>{{ meal.detailKey | translate }}</small>
+            </div>
+            <span class="status">{{ meal.statusKey | translate }}</span>
+          </article>
+        }
+      </div>
+    </mat-card>
+  </section>
+
+  <app-patient-quick-actions [actions]="dashboard().quickActions" />
+
+  <section class="panel-grid bottom-grid">
+    <mat-card appearance="outlined" class="panel water-panel">
+      <div class="panel-header">
+        <div>
+          <span class="eyebrow">{{ 'patient.dashboard.water.eyebrow' | translate }}</span>
+          <h2>{{ 'patient.dashboard.water.title' | translate }}</h2>
+        </div>
+        <strong>{{ waterLabel() }}</strong>
+      </div>
+      <div class="cups" [attr.aria-label]="'patient.dashboard.water.label' | translate">
+        @for (cup of cupSlots(); track $index) {
+          <span [class.filled]="$index < dashboard().waterCups"></span>
+        }
+      </div>
+      <a mat-stroked-button routerLink="/patient/log">{{ 'patient.dashboard.water.action' | translate }}</a>
+    </mat-card>
+
+    <mat-card appearance="outlined" class="panel">
+      <div class="panel-header">
+        <div>
+          <span class="eyebrow">{{ 'patient.dashboard.week.eyebrow' | translate }}</span>
+          <h2>{{ 'patient.dashboard.week.title' | translate }}</h2>
+        </div>
+      </div>
+      <div class="week-chart" [attr.aria-label]="'patient.dashboard.week.label' | translate">
+        @for (point of dashboard().week; track point.dayKey) {
+          <div class="day-bar">
+            <span class="bar" [style.height.%]="barHeight(point.calories)" [class.empty]="point.calories === 0"></span>
+            <small>{{ point.dayKey | translate }}</small>
+          </div>
+        }
+      </div>
+    </mat-card>
+  </section>
+</section>

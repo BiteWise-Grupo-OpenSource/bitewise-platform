@@ -1,0 +1,42 @@
+<main class="patient-shell">
+  <aside class="patient-sidebar" [attr.aria-label]="'patient.shell.navigationLabel' | translate">
+    <a class="brand" routerLink="/patient">{{ 'app.brand' | translate }}</a>
+    <mat-chip-set [attr.aria-label]="'patient.shell.roleLabel' | translate">
+      <mat-chip>{{ 'iam.roles.patient' | translate }}</mat-chip>
+    </mat-chip-set>
+
+    <nav>
+      @for (item of navItems; track item.route) {
+        <a
+          mat-button
+          [routerLink]="item.route"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: item.route === '/patient' }"
+        >
+          <span class="nav-icon" aria-hidden="true">{{ item.iconLabel }}</span>
+          {{ item.labelKey | translate }}
+        </a>
+      }
+    </nav>
+  </aside>
+
+  <section class="patient-content">
+    <header class="patient-topbar">
+      <div class="identity">
+        <span class="avatar" aria-hidden="true">{{ initials() }}</span>
+        <div>
+          <span>{{ 'patient.shell.signedInAs' | translate }}</span>
+          <strong>{{ user()?.displayName }}</strong>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <app-language-switcher />
+        <button type="button" mat-stroked-button (click)="logout()">
+          {{ 'iam.session.logout' | translate }}
+        </button>
+      </div>
+    </header>
+
+    <router-outlet />
+  </section>
+</main>

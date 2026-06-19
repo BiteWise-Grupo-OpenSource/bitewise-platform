@@ -31,6 +31,10 @@ export const routes: Routes = [
     loadComponent: () => import('./iam/pages/session/session.page').then((m) => m.SessionPage)
   },
   {
+    path: 'patient',
+    loadChildren: () => import('./patient/patient.routes').then((m) => m.patientRoutes)
+  },
+  {
     path: '**',
     redirectTo: 'session'
   }
