@@ -11,6 +11,7 @@ import { AuthShellComponent } from '../../components/auth-shell/auth-shell.compo
 import { RoleSelectorComponent } from '../../components/role-selector/role-selector.component';
 import { UserRole } from '../../model/auth.models';
 import { AuthService } from '../../services/auth.service';
+import { BackendAuthService } from '../../services/backend-auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -30,6 +31,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginPage {
   private readonly auth = inject(AuthService);
+  private readonly backendAuth = inject(BackendAuthService);
   private readonly formBuilder = inject(FormBuilder);
   private readonly router = inject(Router);
 
@@ -38,13 +40,13 @@ export class LoginPage {
   readonly errorKey = signal<string | null>(null);
 
   readonly form = this.formBuilder.nonNullable.group({
-    email: ['andrea@email.com', [Validators.required, Validators.email]],
+    email: ['ana@example.com', [Validators.required, Validators.email]],
     password: ['123456', [Validators.required]]
   });
 
   setRole(role: UserRole): void {
     this.role.set(role);
-    this.form.controls.email.setValue(role === 'patient' ? 'andrea@email.com' : 'dr.carlos@email.com');
+    this.form.controls.email.setValue(role === 'patient' ? 'ana@example.com' : 'dr.carlos@email.com');
   }
 
   submit(): void {
@@ -56,15 +58,30 @@ export class LoginPage {
     this.loading.set(true);
     this.errorKey.set(null);
 
-    this.auth
-      .login({
-        ...this.form.getRawValue(),
-        role: this.role()
-      })
-      .pipe(finalize(() => this.loading.set(false)))
-      .subscribe({
-        next: (session) => void this.router.navigateByUrl(this.auth.nextRouteFor(session)),
-        error: () => this.errorKey.set('iam.login.invalidCredentials')
-      });
+    const formValue = this.form.getRawValue();
+
+    if (this.role() === 'patient') {
+      this.backendAuth
+        .loginPatient(formValue.email, formValue.password)
+        .pipe(finalize(() => this.loading.set(false)))
+        .subscribe({
+          next: (user) => {
+            const session = this.auth['createAndStoreSession'](user);
+            void this.router.navigateByUrl(this.auth.nextRouteFor(session));
+          },
+          error: () => this.errorKey.set('iam.login.invalidCredentials')
+        });
+    } else {
+      this.backendAuth
+        .loginNutritionist(formValue.email, formValue.password)
+        .pipe(finalize(() => this.loading.set(false)))
+        .subscribe({
+          next: (user) => {
+            const session = this.auth['createAndStoreSession'](user);
+            void this.router.navigateByUrl(this.auth.nextRouteFor(session));
+          },
+          error: () => this.errorKey.set('iam.login.invalidCredentials')
+        });
+    }
   }
 }
