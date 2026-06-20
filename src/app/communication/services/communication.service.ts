@@ -1,4 +1,7 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { computed, inject, Injectable, signal } from '@angular/core';
+import { catchError, of } from 'rxjs';
+import { ApiUrlService } from '../../shared/services/api-url.service';
 import {
   Conversation,
   ConversationMessage,
@@ -6,17 +9,25 @@ import {
   MessageAuthor
 } from '../model/communication.models';
 
-/**
- * In-memory mock backend for the communication bounded context.
- *
- * Conversations live in a signal so both the patient view and the professional
- * inbox react to locally sent messages without a real backend or persistence.
- * Seeded messages use i18n keys (`bodyKey`); locally sent messages keep the raw
- * typed text (`body`).
- */
+interface BackendPatient {
+  id: number;
+  name: string;
+  email: string;
+}
+
+interface BackendMessage {
+  id: number;
+  patient: BackendPatient;
+  sender?: string;
+  content: string;
+  sentAt?: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class CommunicationService {
   private static readonly NUTRITIONIST = 'Dr. Carlos Medina';
+  private readonly http = inject(HttpClient);
+  private readonly apiUrl = inject(ApiUrlService);
   private sequence = 0;
 
   private readonly conversationsData = signal<Conversation[]>([
@@ -93,6 +104,10 @@ export class CommunicationService {
 
   readonly awaitingCount = computed(() => this.previews().filter((preview) => preview.awaitingReply).length);
 
+  constructor() {
+    this.loadBackendMessages();
+  }
+
   selectConversation(conversationId: string): void {
     this.selectedId.set(conversationId);
   }
@@ -124,5 +139,47 @@ export class CommunicationService {
           : conversation
       )
     );
+  }
+
+  private loadBackendMessages(): void {
+    this.http
+      .get<BackendMessage[]>(this.apiUrl.endpoint('messages'))
+      .pipe(catchError(() => of<BackendMessage[]>([])))
+      .subscribe((messages) => {
+        if (!messages.length) {
+          return;
+        }
+
+        const conversations = new Map<string, Conversation>();
+
+        for (const message of messages) {
+          const patientId = String(message.patient.id);
+          const conversation = conversations.get(patientId) ?? {
+            id: `patient-${patientId}`,
+            patientId,
+            patientName: message.patient.name,
+            patientEmail: message.patient.email,
+            nutritionistName: CommunicationService.NUTRITIONIST,
+            messages: []
+          };
+
+          conversation.messages.push({
+            id: String(message.id),
+            author: message.sender === 'nutritionist' ? 'nutritionist' : 'patient',
+            sentAt: message.sentAt ?? new Date().toISOString(),
+            body: message.content
+          });
+
+          conversations.set(patientId, conversation);
+        }
+
+        const mapped = Array.from(conversations.values()).map((conversation) => ({
+          ...conversation,
+          messages: conversation.messages.sort((left, right) => left.sentAt.localeCompare(right.sentAt))
+        }));
+
+        this.conversationsData.set(mapped);
+        this.selectedId.set(mapped[0]?.id ?? null);
+      });
   }
 }

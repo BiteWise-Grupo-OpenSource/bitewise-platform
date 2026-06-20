@@ -1,4 +1,7 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { computed, inject, Injectable, signal } from '@angular/core';
+import { catchError, of } from 'rxjs';
+import { ApiUrlService } from '../../shared/services/api-url.service';
 import {
   ClinicalKpis,
   ClinicalMessage,
@@ -7,15 +10,29 @@ import {
   PendingReview
 } from '../model/clinical.models';
 
-/**
- * In-memory mock backend for the clinical bounded context.
- *
- * Data is kept locally with signals so the protected workspace renders without
- * a running mock API. Replace the seed data / methods with real HTTP calls when
- * a backend becomes available; the public surface is intentionally observable.
- */
+interface BackendPatient {
+  id: number;
+  name: string;
+  email: string;
+  age?: number;
+  weightKg?: number;
+  heightCm?: number;
+  goal?: string;
+}
+
+interface BackendMessage {
+  id: number;
+  patient: BackendPatient;
+  sender?: string;
+  content: string;
+  sentAt?: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class ClinicalService {
+  private readonly http = inject(HttpClient);
+  private readonly apiUrl = inject(ApiUrlService);
+
   private readonly profileData = signal<NutritionistProfile>({
     id: 'nutritionist-demo',
     displayName: 'Dr. Carlos Medina',
@@ -171,7 +188,93 @@ export class ClinicalService {
     };
   });
 
+  constructor() {
+    this.loadBackendData();
+  }
+
   selectPatient(patientId: string): void {
     this.selectedId.set(patientId);
+  }
+
+  private loadBackendData(): void {
+    this.http
+      .get<BackendPatient[]>(this.apiUrl.endpoint('patients'))
+      .pipe(catchError(() => of<BackendPatient[]>([])))
+      .subscribe((patients) => {
+        if (!patients.length) {
+          return;
+        }
+
+        const mapped = patients.map((patient) => this.mapPatient(patient));
+        this.patientsData.set(mapped);
+        this.selectedId.set(mapped[0]?.id ?? null);
+        this.reviewsData.set([]);
+      });
+
+    this.http
+      .get<BackendMessage[]>(this.apiUrl.endpoint('messages'))
+      .pipe(catchError(() => of<BackendMessage[]>([])))
+      .subscribe((messages) => {
+        if (!messages.length) {
+          return;
+        }
+
+        this.messagesData.set(messages.map((message) => this.mapMessage(message)));
+      });
+  }
+
+  private mapPatient(patient: BackendPatient): ClinicalPatient {
+    const heightM = patient.heightCm ? Number(patient.heightCm) / 100 : 0;
+    const bmi = heightM > 0 && patient.weightKg ? Number(patient.weightKg) / (heightM * heightM) : 0;
+
+    return {
+      id: String(patient.id),
+      fullName: patient.name,
+      age: patient.age ?? 0,
+      status: 'active',
+      goal: this.toPatientGoal(patient.goal),
+      planKey: 'balanced2000',
+      adherence: 0,
+      lastVisit: new Date().toISOString().slice(0, 10),
+      nextVisit: new Date().toISOString().slice(0, 10),
+      heightCm: Number(patient.heightCm ?? 0),
+      weightKg: Number(patient.weightKg ?? 0),
+      bmi: Number(bmi.toFixed(1)),
+      conditions: ['none'],
+      noteKey: 'maintainPlan'
+    };
+  }
+
+  private mapMessage(message: BackendMessage): ClinicalMessage {
+    return {
+      id: String(message.id),
+      patientId: String(message.patient.id),
+      patientName: message.patient.name,
+      previewKey: 'update',
+      sentAt: message.sentAt ?? new Date().toISOString(),
+      unread: message.sender === 'patient'
+    };
+  }
+
+  private toPatientGoal(value: string | undefined): ClinicalPatient['goal'] {
+    const normalized = value?.trim().toLowerCase() ?? '';
+
+    if (normalized.includes('muscle')) {
+      return 'muscleGain';
+    }
+
+    if (normalized.includes('sport')) {
+      return 'sportsNutrition';
+    }
+
+    if (normalized.includes('clinical') || normalized.includes('diabetes') || normalized.includes('hypertension')) {
+      return 'clinicalNutrition';
+    }
+
+    if (normalized.includes('weight') || normalized.includes('loss')) {
+      return 'weightLoss';
+    }
+
+    return 'energy';
   }
 }

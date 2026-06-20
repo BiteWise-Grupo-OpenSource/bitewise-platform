@@ -1,9 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { isPlatformBrowser } from '@angular/common';
 import { computed, inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { toObservable } from '@angular/core/rxjs-interop';
-import { map, Observable, switchMap, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import {
   AuthSession,
   AuthUser,
@@ -13,14 +12,32 @@ import {
   StoredUser
 } from '../model/auth.models';
 
-const API_URL = 'http://localhost:3000/users';
 const SESSION_KEY = 'bitewise.auth.session';
 const TOKEN_KEY = 'bitewise.auth.token';
+const LOCAL_USERS_KEY = 'bitewise.auth.localUsers';
 const SESSION_TTL_SECONDS = 60 * 60 * 8;
+
+const DEMO_USERS: StoredUser[] = [
+  {
+    id: 'patient-demo',
+    email: 'andrea@email.com',
+    password: '123456',
+    displayName: 'Andrea Flores',
+    role: 'patient',
+    onboardingCompleted: true
+  },
+  {
+    id: 'nutritionist-demo',
+    email: 'dr.carlos@email.com',
+    password: '123456',
+    displayName: 'Dr. Carlos Medina',
+    role: 'nutritionist',
+    onboardingCompleted: true
+  }
+];
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private readonly http = inject(HttpClient);
   private readonly router = inject(Router);
   private readonly platformId = inject(PLATFORM_ID);
   private readonly currentSession = signal<AuthSession | null>(null);
@@ -36,41 +53,35 @@ export class AuthService {
 
   login(request: LoginRequest): Observable<AuthSession> {
     const email = request.email.trim().toLowerCase();
+    const user = this.getUsers().find((storedUser) => storedUser.email === email);
 
-    return this.http.get<StoredUser[]>(`${API_URL}?email=${encodeURIComponent(email)}`).pipe(
-      map((users) => users[0]),
-      switchMap((user) => {
-        if (!user || user.password !== request.password || user.role !== request.role) {
-          return throwError(() => new Error('invalidCredentials'));
-        }
+    if (!user || user.password !== request.password || user.role !== request.role) {
+      return throwError(() => new Error('invalidCredentials'));
+    }
 
-        return [this.createAndStoreSession(this.toAuthUser(user))];
-      })
-    );
+    return of(this.createAndStoreSession(this.toAuthUser(user)));
   }
 
   register(request: RegisterRequest): Observable<AuthSession> {
     const email = request.email.trim().toLowerCase();
+    const users = this.getUsers();
 
-    return this.http.get<StoredUser[]>(`${API_URL}?email=${encodeURIComponent(email)}`).pipe(
-      switchMap((users) => {
-        if (users.length > 0) {
-          return throwError(() => new Error('emailExists'));
-        }
+    if (users.some((user) => user.email === email)) {
+      return throwError(() => new Error('emailExists'));
+    }
 
-        const user: StoredUser = {
-          id: this.createId(),
-          email,
-          password: request.password,
-          displayName: request.displayName.trim(),
-          role: request.role,
-          onboardingCompleted: request.role === 'nutritionist'
-        };
+    const user: StoredUser = {
+      id: this.createId(),
+      email,
+      password: request.password,
+      displayName: request.displayName.trim(),
+      role: request.role,
+      onboardingCompleted: request.role === 'nutritionist'
+    };
 
-        return this.http.post<StoredUser>(API_URL, user);
-      }),
-      map((user) => this.createAndStoreSession(this.toAuthUser(user)))
-    );
+    this.writeUsers([...users, user]);
+
+    return of(this.createAndStoreSession(this.toAuthUser(user)));
   }
 
   completeOnboarding(): Observable<AuthSession> {
@@ -85,9 +96,15 @@ export class AuthService {
       onboardingCompleted: true
     };
 
-    return this.http.patch<StoredUser>(`${API_URL}/${session.user.id}`, { onboardingCompleted: true }).pipe(
-      map(() => this.createAndStoreSession(updatedUser))
+    this.writeUsers(
+      this.getUsers().map((user) =>
+        user.id === session.user.id
+          ? { ...user, onboardingCompleted: true }
+          : user
+      )
     );
+
+    return of(this.createAndStoreSession(updatedUser));
   }
 
   logout(): void {
@@ -221,6 +238,37 @@ export class AuthService {
   private toAuthUser(user: StoredUser): AuthUser {
     const { password: _password, ...authUser } = user;
     return authUser;
+  }
+
+  private getUsers(): StoredUser[] {
+    if (!this.canUseStorage()) {
+      return DEMO_USERS;
+    }
+
+    const rawUsers = localStorage.getItem(LOCAL_USERS_KEY);
+
+    if (!rawUsers) {
+      return DEMO_USERS;
+    }
+
+    try {
+      return [...DEMO_USERS, ...JSON.parse(rawUsers) as StoredUser[]];
+    } catch {
+      localStorage.removeItem(LOCAL_USERS_KEY);
+      return DEMO_USERS;
+    }
+  }
+
+  private writeUsers(users: StoredUser[]): void {
+    if (!this.canUseStorage()) {
+      return;
+    }
+
+    const demoEmails = new Set(DEMO_USERS.map((user) => user.email));
+    localStorage.setItem(
+      LOCAL_USERS_KEY,
+      JSON.stringify(users.filter((user) => !demoEmails.has(user.email)))
+    );
   }
 
   private createId(): string {

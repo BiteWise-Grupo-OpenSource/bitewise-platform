@@ -1,4 +1,7 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { computed, inject, Injectable, signal } from '@angular/core';
+import { catchError, forkJoin, of } from 'rxjs';
+import { ApiUrlService } from '../../shared/services/api-url.service';
 import {
   FoodItem,
   FoodLogEntry,
@@ -11,6 +14,44 @@ import {
   Recipe
 } from '../model/nutrition.models';
 
+interface BackendPatient {
+  id: number;
+  name: string;
+  email: string;
+  age?: number;
+  weightKg?: number;
+  heightCm?: number;
+  goal?: string;
+}
+
+interface BackendRecipe {
+  id: number;
+  name: string;
+  description?: string;
+  calories?: number;
+  proteinG?: number;
+  carbsG?: number;
+  fatG?: number;
+}
+
+interface BackendMealPlan {
+  id: number;
+  patient: BackendPatient;
+  title: string;
+  description?: string;
+  startDate?: string;
+  endDate?: string;
+}
+
+interface BackendDailyMeal {
+  id: number;
+  mealPlan: BackendMealPlan;
+  recipe?: BackendRecipe;
+  dayOfWeek?: string;
+  mealType?: string;
+  notes?: string;
+}
+
 const ZERO_MACROS: MacroTarget = {
   calories: 0,
   proteinG: 0,
@@ -19,8 +60,19 @@ const ZERO_MACROS: MacroTarget = {
   fiberG: 0
 };
 
+const DEFAULT_TARGET: MacroTarget = {
+  calories: 1800,
+  proteinG: 125,
+  carbsG: 185,
+  fatG: 58,
+  fiberG: 28
+};
+
 @Injectable({ providedIn: 'root' })
 export class NutritionService {
+  private readonly http = inject(HttpClient);
+  private readonly apiUrl = inject(ApiUrlService);
+
   private readonly plansData = signal<MealPlan[]>(this.createPlans());
   private readonly foodsData = signal<FoodItem[]>(this.createFoods());
   private readonly recipesData = signal<Recipe[]>(this.createRecipes());
@@ -49,6 +101,10 @@ export class NutritionService {
   });
   readonly todayTotals = computed(() => this.sumMacros(this.logData().map((entry) => entry.macros)));
 
+  constructor() {
+    this.loadBackendData();
+  }
+
   selectPlan(planId: string): void {
     this.selectedPlanId.set(planId);
   }
@@ -58,10 +114,20 @@ export class NutritionService {
   }
 
   addLogEntry(foodId: string, meal: MealKind): void {
-    this.logData.update((entries) => [
-      ...entries,
-      this.createLogEntry(foodId, meal, new Date().toISOString())
-    ]);
+    const entry = this.createLogEntry(foodId, meal, new Date().toISOString());
+
+    this.logData.update((entries) => [...entries, entry]);
+
+    this.http
+      .post(this.apiUrl.endpoint('food-logs'), {
+        patientId: 1,
+        recipeId: this.backendId(foodId),
+        loggedAt: entry.loggedAt,
+        quantity: 1,
+        notes: meal
+      })
+      .pipe(catchError(() => of(null)))
+      .subscribe();
   }
 
   dayTotals(day: MealPlanDay): MacroTarget {
@@ -74,6 +140,154 @@ export class NutritionService {
     }
 
     return Math.min(100, Math.round((current / target) * 100));
+  }
+
+  private loadBackendData(): void {
+    forkJoin({
+      recipes: this.http.get<BackendRecipe[]>(this.apiUrl.endpoint('recipes')).pipe(catchError(() => of<BackendRecipe[]>([]))),
+      plans: this.http.get<BackendMealPlan[]>(this.apiUrl.endpoint('meal-plans')).pipe(catchError(() => of<BackendMealPlan[]>([]))),
+      dailyMeals: this.http.get<BackendDailyMeal[]>(this.apiUrl.endpoint('daily-meals')).pipe(catchError(() => of<BackendDailyMeal[]>([])))
+    }).subscribe(({ recipes, plans, dailyMeals }) => {
+      if (recipes.length) {
+        this.recipesData.set(recipes.map((recipe) => this.mapRecipe(recipe)));
+        this.foodsData.set(recipes.map((recipe) => this.mapFood(recipe)));
+      }
+
+      if (plans.length) {
+        const mappedPlans = plans.map((plan) =>
+          this.mapPlan(plan, dailyMeals.filter((meal) => meal.mealPlan.id === plan.id))
+        );
+        this.plansData.set(mappedPlans);
+        this.selectedPlanId.set(mappedPlans[0]?.id ?? this.selectedPlanId());
+      }
+    });
+  }
+
+  private mapPlan(plan: BackendMealPlan, dailyMeals: BackendDailyMeal[]): MealPlan {
+    return {
+      id: String(plan.id),
+      patientId: String(plan.patient.id),
+      patientName: plan.patient.name,
+      titleKey: plan.title,
+      goal: this.toNutritionGoal(plan.patient.goal),
+      status: 'active',
+      startDate: plan.startDate ?? new Date().toISOString().slice(0, 10),
+      endDate: plan.endDate ?? plan.startDate ?? new Date().toISOString().slice(0, 10),
+      dailyTarget: this.estimateTarget(dailyMeals),
+      adherence: 0,
+      assignedBy: 'BiteWise',
+      days: this.groupDailyMeals(plan, dailyMeals)
+    };
+  }
+
+  private groupDailyMeals(plan: BackendMealPlan, dailyMeals: BackendDailyMeal[]): MealPlanDay[] {
+    const grouped = new Map<string, BackendDailyMeal[]>();
+
+    for (const meal of dailyMeals) {
+      const key = meal.dayOfWeek ?? 'Day';
+      grouped.set(key, [...(grouped.get(key) ?? []), meal]);
+    }
+
+    return Array.from(grouped.entries()).map(([dayName, meals], index) =>
+      this.day(
+        `${plan.id}-${dayName}`,
+        dayName,
+        this.addDays(plan.startDate, index),
+        this.estimateTarget(meals),
+        meals.map((meal) => this.mapMealItem(meal))
+      )
+    );
+  }
+
+  private mapMealItem(meal: BackendDailyMeal): MealItem {
+    const macros = this.recipeMacros(meal.recipe);
+
+    return {
+      id: String(meal.id),
+      meal: this.toMealKind(meal.mealType),
+      foodKey: meal.recipe?.name ?? meal.notes ?? 'Meal',
+      portionKey: meal.notes ?? '1 serving',
+      calories: macros.calories,
+      macros
+    };
+  }
+
+  private mapRecipe(recipe: BackendRecipe): Recipe {
+    return {
+      id: `recipe-${recipe.id}`,
+      titleKey: recipe.name,
+      summaryKey: recipe.description ?? recipe.name,
+      goal: 'energy',
+      prepMinutes: 20,
+      difficulty: 'easy',
+      calories: recipe.calories ?? 0,
+      macros: this.recipeMacros(recipe),
+      tagKeys: ['BiteWise']
+    };
+  }
+
+  private mapFood(recipe: BackendRecipe): FoodItem {
+    const macros = this.recipeMacros(recipe);
+
+    return {
+      id: `recipe-${recipe.id}`,
+      nameKey: recipe.name,
+      servingKey: '1 serving',
+      calories: macros.calories,
+      macros,
+      tags: ['backend']
+    };
+  }
+
+  private recipeMacros(recipe?: BackendRecipe): MacroTarget {
+    return {
+      calories: recipe?.calories ?? 0,
+      proteinG: Number(recipe?.proteinG ?? 0),
+      carbsG: Number(recipe?.carbsG ?? 0),
+      fatG: Number(recipe?.fatG ?? 0),
+      fiberG: 0
+    };
+  }
+
+  private estimateTarget(meals: BackendDailyMeal[]): MacroTarget {
+    const macros = this.sumMacros(meals.map((meal) => this.recipeMacros(meal.recipe)));
+    return macros.calories > 0 ? macros : DEFAULT_TARGET;
+  }
+
+  private addDays(date: string | undefined, days: number): string {
+    const value = date ? new Date(`${date}T00:00:00`) : new Date();
+    value.setDate(value.getDate() + days);
+    return value.toISOString().slice(0, 10);
+  }
+
+  private toMealKind(value: string | undefined): MealKind {
+    const normalized = value?.toLowerCase();
+    return normalized === 'breakfast' || normalized === 'lunch' || normalized === 'dinner' || normalized === 'snack'
+      ? normalized
+      : 'lunch';
+  }
+
+  private toNutritionGoal(value: string | undefined): NutritionGoal {
+    const normalized = value?.trim().toLowerCase() ?? '';
+
+    if (normalized.includes('muscle')) {
+      return 'muscleGain';
+    }
+
+    if (normalized.includes('clinical') || normalized.includes('diabetes') || normalized.includes('hypertension')) {
+      return 'clinicalNutrition';
+    }
+
+    if (normalized.includes('weight') || normalized.includes('loss')) {
+      return 'weightLoss';
+    }
+
+    return 'energy';
+  }
+
+  private backendId(id: string): number | null {
+    const match = id.match(/\d+$/);
+    return match ? Number(match[0]) : null;
   }
 
   private sumMacros(macros: MacroTarget[]): MacroTarget {
