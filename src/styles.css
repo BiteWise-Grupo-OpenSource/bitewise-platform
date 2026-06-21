@@ -1,24 +1,65 @@
 @import '@angular/material/prebuilt-themes/azure-blue.css';
 
 :root {
-  --bw-bg: #f7efe5;
-  --bw-bg-dark: #1f261f;
-  --bw-surface: #fffaf4;
-  --bw-surface-muted: #f1e6d9;
-  --bw-ink: #241f1a;
-  --bw-muted: #756b62;
-  --bw-border: rgba(36, 31, 26, 0.13);
-  --bw-patient: #c4622d;
-  --bw-patient-soft: #f4dfd0;
-  --bw-nutritionist: #2a6e46;
-  --bw-nutritionist-soft: #dbe9dc;
-  --bw-success: #2f7a4f;
-  --bw-warning: #b36b00;
-  --bw-error: #b34234;
-  --bw-info: #326f9f;
+  --bg: #F5F0E8;
+  --bg2: #EDE8DF;
+  --bg3: #E5DFD4;
+  --card: #FFFFFF;
+  --text: #18100A;
+  --sub: #7A6A56;
+  --hint: #A8977E;
+  --acc: #C4622D;
+  --acc2: #A84E22;
+  --acc3: rgba(196,98,45,0.08);
+  --grn: #2A6E46;
+  --grn2: rgba(42,110,70,0.1);
+  --blu: #1D5FA8;
+  --blu2: rgba(29,95,168,0.1);
+  --red: #A82D2D;
+  --red2: rgba(168,45,45,0.1);
+  --amb: #9A6310;
+  --amb2: rgba(154,99,16,0.1);
+  --bdr: rgba(24,16,10,0.09);
+  --bdr2: rgba(24,16,10,0.14);
+
+  /* Mapeo para compatibilidad con código existente */
+  --bw-bg: var(--bg);
+  --bw-bg-dark: #221C12;
+  --bw-surface: var(--card);
+  --bw-surface-muted: var(--bg2);
+  --bw-ink: var(--text);
+  --bw-muted: var(--sub);
+  --bw-border: var(--bdr);
+  --bw-patient: var(--acc);
+  --bw-patient-soft: var(--acc3);
+  --bw-nutritionist: var(--grn);
+  --bw-nutritionist-soft: var(--grn2);
+  --bw-success: var(--grn);
+  --bw-warning: var(--acc);
+  --bw-error: var(--red);
+  --bw-info: var(--blu);
   --bw-shadow: 0 22px 70px rgba(77, 54, 35, 0.14);
   --bw-display-font: Cambria, Georgia, serif;
-  --bw-body-font: Aptos, 'Segoe UI', sans-serif;
+  --bw-body-font: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+}
+
+[data-dark] {
+  --bg: #221C12;
+  --bg2: #2C2416;
+  --bg3: #342C1C;
+  --card: #3A3020;
+  --text: #F0EAE0;
+  --sub: #A89878;
+  --hint: #7A6A56;
+  --acc: #D4743E;
+  --acc2: #E8875A;
+  --acc3: rgba(212,116,62,0.1);
+  --grn2: rgba(42,110,70,0.15);
+  --blu2: rgba(29,95,168,0.15);
+  --red2: rgba(168,45,45,0.15);
+  --amb2: rgba(154,99,16,0.15);
+  --bdr: rgba(240,234,224,0.09);
+  --bdr2: rgba(240,234,224,0.16);
 }
 
 * {
