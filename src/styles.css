@@ -94,14 +94,64 @@ a {
   width: 100%;
 }
 
+.mat-mdc-text-field-wrapper {
+  background: var(--bg);
+  border-radius: 9px;
+}
+
+.mat-mdc-form-field-outline {
+  border-color: var(--bdr2);
+}
+
+.mat-mdc-form-field.mat-focused .mat-mdc-form-field-outline {
+  border-color: var(--acc);
+}
+
+.mat-mdc-form-field-label {
+  color: var(--sub);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.mat-mdc-input-element {
+  color: var(--text);
+  font-size: 13px;
+}
+
 .mat-mdc-unelevated-button.mat-primary {
-  --mdc-filled-button-container-color: var(--bw-patient);
+  --mdc-filled-button-container-color: var(--acc);
   --mdc-filled-button-label-text-color: #fff;
+  border-radius: 100px;
+  padding: 9px 18px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.mat-mdc-unelevated-button.mat-primary:hover {
+  --mdc-filled-button-container-color: var(--acc2);
 }
 
 .mat-mdc-outlined-button:not(:disabled) {
-  --mdc-outlined-button-outline-color: var(--bw-border);
-  --mdc-outlined-button-label-text-color: var(--bw-ink);
+  --mdc-outlined-button-outline-color: var(--bdr2);
+  --mdc-outlined-button-label-text-color: var(--text);
+  border-radius: 100px;
+  padding: 9px 18px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.mat-mdc-outlined-button:not(:disabled):hover {
+  border-color: var(--acc);
+  color: var(--acc);
+}
+
+.mat-mdc-card {
+  background: var(--card);
+  border: 0.5px solid var(--bdr);
+  border-radius: 14px;
+  padding: 18px;
 }
 
 ::selection {
