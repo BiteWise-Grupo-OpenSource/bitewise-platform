@@ -11,26 +11,26 @@ export class BackendAuthService {
   private readonly apiUrl = inject(ApiUrlService);
 
   loginPatient(email: string, password: string): Observable<any> {
-    return this.http.get<Patient[]>(this.apiUrl.endpoint('patients')).pipe(
-      map(patients => {
-        const patient = patients.find(p => p.email === email);
-        if (!patient) {
-          throw new Error('Paciente no encontrado');
-        }
-        // Por ahora, cualquier password funciona ya que el backend no tiene auth real
-        return {
-          id: String(patient.id),
-          email: patient.email,
-          displayName: patient.name,
-          role: 'patient',
-          onboardingCompleted: true
-        };
-      }),
-      catchError(error => {
-        console.error('Error en login:', error);
-        return throwError(() => new Error('Error al conectar con el backend'));
-      })
-    );
+    // Por ahora, usar mock para pacientes también hasta que el backend esté completamente funcional
+    if (email === 'ana@example.com' && password === '123456') {
+      return of({
+        id: 'patient-demo',
+        email: 'ana@example.com',
+        displayName: 'Ana García',
+        role: 'patient',
+        onboardingCompleted: true
+      });
+    }
+    if (email === 'andrea@email.com' && password === '123456') {
+      return of({
+        id: 'patient-demo-2',
+        email: 'andrea@email.com',
+        displayName: 'Andrea Flores',
+        role: 'patient',
+        onboardingCompleted: true
+      });
+    }
+    return throwError(() => new Error('Credenciales incorrectas'));
   }
 
   loginNutritionist(email: string, password: string): Observable<any> {
